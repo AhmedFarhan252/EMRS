@@ -9,7 +9,7 @@ router.get("/", (req, res) => {
 
 // New account route
 router.post("/new", (req, res) => {
-  res.send("Create new acocunt");
+  res.send("Create new account");
 });
 
 // Profile page route
@@ -33,8 +33,13 @@ router.post("/records", (req, res) => {
 });
 
 // Appointments route
-router.post("/appointment", (req, res) => {
+router.get("/appointment", (req, res) => {
   res.send("Appointments page");
+});
+
+// Make appointment selection
+router.get("/appointment", (req, res) => {
+  res.send("Appointment selection");
 });
 
 module.exports = router;
