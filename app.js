@@ -8,6 +8,7 @@ require("dotenv").config();
 //Routes
 var patientRouter = require("./routes/patient");
 var doctorRouter = require("./routes/doctor");
+var adminRouter = require("./routes/admin");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
@@ -54,6 +55,7 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/patient", patientRouter);
 app.use("/doctor", doctorRouter);
+app.use("/admin", adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
