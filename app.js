@@ -3,6 +3,7 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+require("dotenv").config();
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -12,11 +13,11 @@ var app = express();
 //Setup pg-promise to use PostgreSQL
 const pgp = require("pg-promise")();
 const conn = {
-  host: "localhost",
-  port: 5432,
-  database: "library",
-  user: "test",
-  password: "east2west",
+  host: process.env.DB_HOST,
+  port: parseInt(process.env.DB_PORT),
+  database: process.env.DB_DATABASE,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
   max: 50,
 };
 
