@@ -38,7 +38,7 @@ router.get("/appointment", (req, res) => {
 });
 
 // Make appointment selection
-router.get("/appointment", (req, res) => {
+router.post("/appointment", (req, res) => {
   res.send("Appointment selection");
 });
 

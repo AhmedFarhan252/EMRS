@@ -49,7 +49,7 @@ router.get("/visualization", (req, res) => {
 
 // Visualization date set route
 router.post("/visualization", (req, res) => {
-  res.send("Change visualziation settings page");
+  res.send("Change visualization settings page");
 });
 
 // Office hours route
