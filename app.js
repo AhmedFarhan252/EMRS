@@ -10,7 +10,6 @@ var patientRouter = require("./routes/patient");
 var doctorRouter = require("./routes/doctor");
 var adminRouter = require("./routes/admin");
 var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
 
 var app = express();
 

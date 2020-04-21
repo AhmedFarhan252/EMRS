@@ -13,7 +13,8 @@ router.post("/new", (req, res) => {
 });
 
 // Profile page route
-router.get("/profile", (req, res) => {
+router.get("/profile/:id", (req, res) => {
+  const uid = req.params.id;
   res.send("Load patient profile ");
 });
 
@@ -23,7 +24,7 @@ router.post("/profile", (req, res) => {
 });
 
 // Record page route
-router.get("/records", (req, res) => {
+router.get("/records/:id", (req, res) => {
   res.send("Records page");
 });
 
@@ -33,7 +34,7 @@ router.post("/records", (req, res) => {
 });
 
 // Appointments route
-router.get("/appointment", (req, res) => {
+router.get("/appointment/:id", (req, res) => {
   res.send("Appointments page");
 });
 

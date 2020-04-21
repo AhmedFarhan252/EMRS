@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
 });
 
 // Account management route
-router.get("/accounts", (req, res) => {
+router.get("/accounts/:id", (req, res) => {
   res.send("Accounts menu");
 });
 
@@ -23,7 +23,7 @@ router.post("/delaccount", (req, res) => {
 });
 
 // Disease route
-router.get("/disease", (req, res) => {
+router.get("/disease/:id", (req, res) => {
   res.send("Disease menu");
 });
 

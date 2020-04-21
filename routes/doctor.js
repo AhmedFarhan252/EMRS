@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
 });
 
 // Profile page route
-router.get("/profile", (req, res) => {
+router.get("/profile/:id", (req, res) => {
   res.send("Load doctor profile ");
 });
 
@@ -18,7 +18,7 @@ router.post("/profile", (req, res) => {
 });
 
 // Record page route
-router.get("/records", (req, res) => {
+router.get("/records/:id", (req, res) => {
   res.send("Records page");
 });
 
@@ -33,7 +33,7 @@ router.post("/recorddownload", (req, res) => {
 });
 
 // New Record page route
-router.get("/newrecord", (req, res) => {
+router.get("/newrecord/:id", (req, res) => {
   res.send("Add Records page");
 });
 
@@ -53,7 +53,7 @@ router.post("/visualization", (req, res) => {
 });
 
 // Office hours route
-router.get("/timings", (req, res) => {
+router.get("/timings/:id", (req, res) => {
   res.send("Office hours page");
 });
 
