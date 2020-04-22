@@ -1,6 +1,7 @@
 // patient.js - Patient route module
 const express = require("express");
 const router = express.Router();
+const patientController = require("../controllers/patientController");
 
 // Home page route
 router.get("/", (req, res) => {
@@ -9,28 +10,27 @@ router.get("/", (req, res) => {
 
 // New account route
 router.post("/new", (req, res) => {
-  res.send("Create new account");
+  patientController.newAccount(req, res);
 });
 
 // Profile page route
 router.get("/profile/:id", (req, res) => {
-  const uid = req.params.id;
-  res.send("Load patient profile ");
+  patientController.getProfile(req, res);
 });
 
 // Edit profile route
 router.post("/profile", (req, res) => {
-  res.send("Edit patient profile ");
+  patientController.updateProfile(req, res);
 });
 
 // Record page route
 router.get("/records/:id", (req, res) => {
-  res.send("Records page");
+  patientController.getRecords(req, res);
 });
 
 // Single record route
 router.post("/records", (req, res) => {
-  res.send("Show single record");
+  patientController.singleRecord(req, res);
 });
 
 // Appointments route

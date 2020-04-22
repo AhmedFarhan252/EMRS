@@ -21,11 +21,11 @@ exports.getProfile = function (req, res) {
 //Updates the doctor's information with the provided variables in body
 exports.editProfile = function (req, res) {
   const { id, f_name, l_name, email, cnic, phone_num } = req.body;
-  db.any(
+  db.none(
     "update doctor set cnic=$1 , f_name=$2 , l_name=$3 , email=$4 , phone_num=$5 where id=$6",
     [cnic, f_name, l_name, email, phone_num, id]
   )
-    .then((data) => {
+    .then(() => {
       res.json({
         status: "ok",
       });
