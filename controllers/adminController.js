@@ -17,7 +17,6 @@ exports.getAccount = function (req, res) {
 
 exports.newAccount = function (req, res) {
   const { fname, lname, email, num, cnic } = req.body;
-  console.log(req.body);
   db.task((t) => {
     return t
       .none(

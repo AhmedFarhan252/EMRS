@@ -1,6 +1,7 @@
 // doctor.js - Doctor route module
 const express = require("express");
 const router = express.Router();
+const doctorController = require("../controllers/doctorController");
 
 // Home page route
 router.get("/", (req, res) => {
@@ -9,57 +10,62 @@ router.get("/", (req, res) => {
 
 // Profile page route
 router.get("/profile/:id", (req, res) => {
-  res.send("Load doctor profile ");
+  doctorController.getProfile(req, res);
 });
 
 // Edit profile route
 router.post("/profile", (req, res) => {
-  res.send("Edit doctor profile ");
+  doctorController.editProfile(req, res);
 });
 
-// Record page route
+// Doctor's Record page route
 router.get("/records/:id", (req, res) => {
-  res.send("Records page");
+  doctorController.getRecords(req, res);
 });
 
 // Single record route
 router.post("/records", (req, res) => {
-  res.send("Show single record");
+  doctorController.singleRecord(req, res);
 });
 
 // Record download route
 router.post("/recorddownload", (req, res) => {
-  res.send("Download selected record");
+  doctorController.recDown(req, res);
 });
 
 // New Record page route
-router.get("/newrecord/:id", (req, res) => {
-  res.send("Add Records page");
+router.get("/newrecord", (req, res) => {
+  doctorController.getPatients(req, res);
+});
+
+// Get Record info route
+router.post("/RecordInfo", (req, res) => {
+  doctorController.getRecordInfo(req, res);
 });
 
 // New record information route
 router.post("/newrecord", (req, res) => {
-  res.send("Enter record information");
+  doctorController.createRecord(req, res);
 });
 
 // Visualization route
 router.get("/visualization", (req, res) => {
-  res.send("Visualization page");
+  doctorController.getDiseaseStats(req, res);
 });
 
 // Visualization date set route
 router.post("/visualization", (req, res) => {
-  res.send("Change visualization settings page");
+  doctorController.setDiseaseStat(req, res);
 });
 
 // Office hours route
 router.get("/timings/:id", (req, res) => {
-  res.send("Office hours page");
+  doctorController.getTimings(req, res);
 });
 
 // Office hours add remove route
 router.post("/timings", (req, res) => {
-  res.send("Add / drop office hours page");
+  doctorController.editTimings(req, res);
 });
 
 module.exports = router;
