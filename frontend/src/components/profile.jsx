@@ -26,6 +26,7 @@ class Profile extends Component {
   componentDidMount() {
     this.getID(this.state.id).then((d) => {
       const data = d.data.data;
+      console.log(data);
       const {
         f_name,
         l_name,

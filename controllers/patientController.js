@@ -29,7 +29,7 @@ exports.newAccount = function (req, res) {
 // Gets the patient's profile information from the database.
 exports.getProfile = function (req, res) {
   const id = req.params.id;
-  db.any(
+  db.one(
     "select patient.f_name,patient.l_name,patient.cnic,patient.dob,patient.email,patient.gender,patient.blood,patient.phone_num from patient where patient.id = $1;",
     [id]
   )
