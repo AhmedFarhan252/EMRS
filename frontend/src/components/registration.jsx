@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { NavLink } from "react-router-dom"
 import logo from "../img/LogoEmr.png"
-import "./CSS/registration.css"
+import "../css/registration.css"
 
 class Register extends Component {
 	state = { cnic: null, dob: null, contact: null, sex: null, blood: null }
