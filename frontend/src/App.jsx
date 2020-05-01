@@ -6,6 +6,8 @@ import Home from "./components/home.jsx";
 import Profile from "./components/profile.jsx";
 import NavBar from "./components/navbar.jsx";
 import UpperBar from "./components/upper-bar.jsx";
+import Edit from "./components/edit-profile";
+import Register from "./components/registration";
 import "./css/App.css";
 
 class App extends React.Component {
@@ -23,8 +25,10 @@ class App extends React.Component {
               <UpperBar />
 
               <Switch>
-                <Route exact path="/" component={Home} />
+                <Route exact path="/" component={Profile} />
                 <Route path="/profile" component={Profile} />
+                <Route path="/edit-profile" component={Edit} />
+                <Route path="/registration" component={Register} />
               </Switch>
             </div>
           </div>
