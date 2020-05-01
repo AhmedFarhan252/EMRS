@@ -19,9 +19,9 @@ class Register extends Component {
 		}
 		const HeaderStyle = {
 			backgroundColor: "#eceeef",
-			width: "142.3vh",
+			width: "140.6vh",
 			height: "8vh",
-			marginLeft: 91,
+			marginLeft: 90,
 			borderTop: "5px solid #d2202f",
 			borderTopLeftRadius: "30px",
 			borderTopRightRadius: "30px",
@@ -105,6 +105,14 @@ class Register extends Component {
 										placeholder="Select Your Gender"
 										onChange={this.ChangeHandle}
 									/>
+									<NavLink to="/profile">
+										<input
+											type="submit"
+											value="Save"
+											onSubmit={this.SubmissionHandle}
+											className="BtnStyle"
+										></input>
+									</NavLink>
 								</div>
 								<div
 									className="col-4 justify-content-center"
@@ -139,24 +147,16 @@ class Register extends Component {
 										<option value="O+">O+</option>
 										<option value="O-">O-</option>
 									</select>
+									<NavLink to="/profile">
+										<input
+											type="button"
+											value="Cancel"
+											onSubmit={this.SubmissionHandle}
+											className="BtnStyle"
+										/>
+									</NavLink>
 								</div>
 							</div>
-							<NavLink to="/profile">
-								<input
-									type="submit"
-									value="Save"
-									onSubmit={this.SubmissionHandle}
-									className="BtnStyle"
-								></input>
-							</NavLink>
-							<NavLink to="/profile">
-								<input
-									type="button"
-									value="Cancel"
-									onSubmit={this.SubmissionHandle}
-									className="BtnStyle"
-								/>
-							</NavLink>
 						</form>
 					</div>
 				</div>
