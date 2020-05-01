@@ -6,6 +6,8 @@ import NavBar from "./components/navbar.jsx"
 import UpperBar from "./components/upper-bar.jsx"
 import Edit from "./components/edit-profile.jsx"
 import Register from "./components/registration"
+import Records from "./components/records.jsx"
+import View from "./components/view-record"
 import "./css/App.css"
 
 class App extends React.Component {
@@ -19,12 +21,17 @@ class App extends React.Component {
 						</div>
 					</div>
 					<div className={"col-sm-10 no-gutters"}>
-						<div className={"rightside"}>
+						<div
+							className={"rightside"}
+							style={{ backgroundColor: "#eceeef" }}
+						>
 							<UpperBar />
+							<View />
 						</div>
 					</div>
-					<Route exact path="/profile" component={Profile} />
-					<Route exact path="/edit-profile" component={Edit} />
+					<Route path="/profile" component={Profile} />
+					<Route path="/edit-profile" component={Edit} />
+					<Route path="/records" component={Records} />
 				</div>
 			</Router>
 		)
