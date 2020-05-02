@@ -2,10 +2,49 @@
 const express = require("express");
 const router = express.Router();
 const patientController = require("../controllers/patientController");
+const db = require("../db/dbConnector");
 
-// Home page route
-router.get("/", (req, res) => {
-  res.send("Patient home page");
+// // Authentication check middleware: Checks if user is authorized
+// router.use((req, res, next) => {
+//   console.log("patient authcheck");
+//   if (!req.user) {
+//     //User not logged in
+//     res.redirect("http://localhost:3000/");
+//   } else {
+//     //Check user role
+//     if (req.user.role === "patient") {
+//       next();
+//     } else {
+//       //Unauthorized so redirect
+//       res.redirect("http://localhost:3000/");
+//     }
+//   }
+// });
+
+//Add table id from patient table to req.
+router.use((req, res, next) => {
+  const { id, role } = req.user;
+  let tid = -1;
+  if (role === "patient") {
+    db.oneOrNone(
+      "select patient.id from patient,login where login.id=$1 and login.email = patient.email;",
+      [id]
+    ).then((data) => {
+      if (data) {
+        tid = data.id;
+
+        const user_data = {
+          id: id,
+          role: "patient",
+          tid: tid,
+        };
+        req.user = user_data;
+        next();
+      } else {
+        next();
+      }
+    });
+  }
 });
 
 // New account route
@@ -14,7 +53,7 @@ router.post("/new", (req, res) => {
 });
 
 // Profile page route
-router.get("/profile/:id", (req, res) => {
+router.get("/profile", (req, res) => {
   patientController.getProfile(req, res);
 });
 

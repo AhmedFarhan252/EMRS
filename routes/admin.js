@@ -3,9 +3,21 @@ const express = require("express");
 const router = express.Router();
 const admin_controller = require("../controllers/adminController");
 
-// Home page route
-router.get("/", (req, res) => {
-  res.send("Admin home page");
+// Authentication check middleware
+router.use((req, res, next) => {
+  console.log("auth middleware");
+  if (!req.user) {
+    //User not logged in
+    res.redirect("http://localhost:3000/");
+  } else {
+    //Check user role
+    if (user.role === "admin") {
+      next();
+    } else {
+      //Unauthorized so redirect
+      res.redirect("http://localhost:3000/");
+    }
+  }
 });
 
 // Account management route

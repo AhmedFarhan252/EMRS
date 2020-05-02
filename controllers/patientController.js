@@ -2,19 +2,13 @@ const db = require("../db/dbConnector");
 
 // Inserts new patient account information into database.
 exports.newAccount = function (req, res) {
-  const { fname, lname, dob, num, cnic, gender, bloodGroup, email } = req.body;
+  const { fname, lname, dob, num, cnic, gender, bloodGroup } = req.body;
+  const email = req.user.email;
   db.task((t) => {
-    return t
-      .none(
-        "insert into patient (email,cnic,f_name,l_name,dob, blood, gender, phone_num) values ($1,$2,$3,$4,$5,$6,$7,$8);",
-        [email, cnic, fname, lname, dob, bloodGroup, gender, num]
-      )
-      .then(() => {
-        return t.none(
-          "insert into login (email,user_role) values ($1,'patient');",
-          [email]
-        );
-      });
+    return t.none(
+      "insert into patient (email,cnic,f_name,l_name,dob, blood, gender, phone_num) values ($1,$2,$3,$4,$5,$6,$7,$8);",
+      [email, cnic, fname, lname, dob, bloodGroup, gender, num]
+    );
   })
     .then(() => {
       res.json({
@@ -28,7 +22,7 @@ exports.newAccount = function (req, res) {
 
 // Gets the patient's profile information from the database.
 exports.getProfile = function (req, res) {
-  const id = req.params.id;
+  const id = req.user.tid;
   db.one(
     "select patient.f_name,patient.l_name,patient.cnic,patient.dob,patient.email,patient.gender,patient.blood,patient.phone_num from patient where patient.id = $1;",
     [id]

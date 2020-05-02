@@ -1,6 +1,23 @@
 const db = require("../db/dbConnector");
 
 // Returns the doctor's profile information
+exports.test = function (req, res) {
+  db.oneOrNone(
+    "select doctor.f_name,doctor.l_name,doctor.email,doctor.cnic,doctor.phone_num from doctor where doctor.id = $1;",
+    [id]
+  )
+    .then((data) => {
+      res.json({
+        status: "ok",
+        data: data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+// Returns the doctor's profile information
 exports.getProfile = function (req, res) {
   const id = req.params.id;
   db.any(
