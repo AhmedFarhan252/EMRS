@@ -12,7 +12,7 @@ class Edit extends Component {
 	}
 	render() {
 		const MainContainer = {
-			height: "90vh",
+			height: "90%",
 			backgroundColor: "#eceeef",
 		}
 		const TitleStyle = {
@@ -60,7 +60,7 @@ class Edit extends Component {
 			<div className="container-fluid" style={MainContainer}>
 				<div
 					className="row jutify-content-center"
-					style={{ height: "10vh" }}
+					style={{ height: "9.5%" }}
 				></div>
 				<header style={HeaderStyle}>
 					<h1 style={TitleStyle}>
