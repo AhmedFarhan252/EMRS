@@ -7,7 +7,6 @@ class Profile extends Component {
 		super(props)
 
 		this.state = {
-			id: 1,
 			fname: "",
 			lname: "",
 			cnic: "",
@@ -19,49 +18,15 @@ class Profile extends Component {
 		}
 	}
 
-	getID = num => {
-		const req = "/patient/profile/" + num
+	getID = () => {
+		const req = "/patient/profile/"
 		return axios.get(req)
 	}
 
 	componentDidMount = () => {
-		this.getID(this.state.id).then(d => {
+		this.getID().then(d => {
 			const data = d.data.data
 			console.log(data)
-			const {
-				f_name,
-				l_name,
-				cnic,
-				dob,
-				email,
-				gender,
-				blood,
-				phone_num,
-			} = data
-
-			this.setState({
-				fname: f_name,
-				lname: l_name,
-				cnic: cnic,
-				dob: dob,
-				email: email,
-				gender: gender,
-				blood: blood,
-				num: phone_num,
-			})
-		})
-	}
-
-	handleChange = e => {
-		this.setState({
-			[e.target.name]: e.target.value,
-		})
-	}
-
-	handleClick = e => {
-		e.preventDefault()
-		this.getID(this.state.id).then(d => {
-			const data = d.data.data
 			const {
 				f_name,
 				l_name,
@@ -103,7 +68,6 @@ class Profile extends Component {
 		}
 		const MainContainer = {
 			height: "90%",
-			backgroundColor: "#eceeef",
 		}
 
 		const { fname, lname, cnic, dob, email, gender, blood, num } = this.state
@@ -145,19 +109,6 @@ class Profile extends Component {
 					</button>
 				</NavLink>
 				<div className="row" style={{ padding: "45px 35px" }}></div>
-				<form>
-					<label>
-						ID:
-						<input
-							type="text"
-							name="id"
-							onChange={e => this.handleChange(e)}
-						/>
-						<button onClick={e => this.handleClick(e)}>
-							Get Patient
-						</button>
-					</label>
-				</form>
 			</div>
 		)
 	}

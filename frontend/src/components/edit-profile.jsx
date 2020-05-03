@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { NavLink } from "react-router-dom"
-import "../css/edit-profile.css"
+import "./css/edit-profile.css"
 
 class Edit extends Component {
 	state = { contact: null, fname: null, lname: null, cnic: null }
