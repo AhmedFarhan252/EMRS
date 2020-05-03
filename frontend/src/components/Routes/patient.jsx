@@ -20,10 +20,10 @@ class Patient extends Component {
 					<div className={"rightside"}>
 						<UpperBar />
 						<Switch>
-							<Route path="/patient/profile" component={Profile} />
-							<Route path="/patient/edit-profile" component={Edit} />
-							<Route path="/patient/records" component={Record} />
-							<Route path="/patient/records" component={View} />
+							<Route path="/Patient/profile" component={Profile} />
+							<Route path="/Patient/edit-profile" component={Edit} />
+							<Route path="/Patient/records" component={Record} />
+							<Route path="/Patient/records" component={View} />
 						</Switch>
 					</div>
 				</div>

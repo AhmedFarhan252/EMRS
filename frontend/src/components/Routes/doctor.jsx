@@ -18,8 +18,8 @@ class Doctor extends Component {
 					<div className={"rightside"}>
 						<UpperBar />
 						<Switch>
-							<Route path="/doctor/profile" component={Profile} />
-							<Route path="/doctor/edit-profile" component={Edit} />
+							<Route path="/Dr/profile" component={Profile} />
+							<Route path="/Dr/edit-profile" component={Edit} />
 						</Switch>
 					</div>
 				</div>
