@@ -12,7 +12,7 @@ class Edit extends Component {
 	}
 	render() {
 		const MainContainer = {
-			height: "90%",
+			height: "88%",
 			backgroundColor: "#eceeef",
 		}
 		const TitleStyle = {
@@ -49,13 +49,13 @@ class Edit extends Component {
 			border: "none",
 			width: "95%",
 			height: "4vh",
-			marginTop: 7,
+			marginTop: "7px",
 			borderBottom: "4px solid #2d8fd5",
 		}
 		const LabelStyle = {
 			color: "#006fbe",
 			fontSize: "25px",
-			marginTop: 25,
+			marginTop: "24px",
 			marginBottom: 0,
 		}
 		return (
