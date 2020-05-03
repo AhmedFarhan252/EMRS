@@ -13,11 +13,17 @@ class Records extends Component {
 		})
 	}
 	ClickHandle = e => {
-		this.setState({ start: this.state.start + 5 })
+		let StartingPoint = null
+		if (e.target.id == "next" && this.state.start < this.state.length - 5) {
+			StartingPoint = this.state.start + 5
+			this.setState({ start: StartingPoint })
+		} else if (e.target.id == "back" && this.state.start != 0) {
+			StartingPoint = this.state.start - 5
+			this.setState({ start: StartingPoint })
+		}
 		axios.get("https://jsonplaceholder.typicode.com/posts/").then(dummy => {
 			this.setState({
-				data: dummy.data.slice(this.state.start, this.state.start + 6),
-				length: dummy.data.length,
+				data: dummy.data.slice(this.state.start, this.state.start + 5),
 			})
 		})
 	}
@@ -25,6 +31,7 @@ class Records extends Component {
 		const ContainerStyle = {
 			width: "75%",
 			marginTop: "7%",
+			height: "10%",
 		}
 		const BtnStyle = {
 			padding: "2% 10%",
@@ -32,10 +39,17 @@ class Records extends Component {
 			marginLeft: "30%",
 		}
 		const BtnStyle1 = {
-			padding: "3px 60px",
+			padding: "0.5% 0.5%",
 			fontSize: "40px",
-			marginLeft: "93%",
-			marginBottom: "60%",
+			float: "right",
+			border: "solid #eceeef",
+			color: "#2d8fd5",
+			fontStyle: "italic",
+		}
+		const BtnStyle2 = {
+			padding: "0.5% 0.5%",
+			fontSize: "40px",
+			float: "left",
 			border: "solid #eceeef",
 			color: "#2d8fd5",
 			fontStyle: "italic",
@@ -62,7 +76,7 @@ class Records extends Component {
 								<td>{tuple.userId}</td>
 								<td>{tuple.id}</td>
 								<td>
-									<NavLink to="#">
+									<NavLink to="/view-record">
 										<button
 											type="button"
 											className="btn btn-outline-primary"
@@ -76,9 +90,17 @@ class Records extends Component {
 						</tbody>
 					))}
 				</table>
-				<button style={BtnStyle1} onClick={this.ClickHandle}>
-					next>
-				</button>
+				<div
+					className="flex-container"
+					style={{ justifyContent: "space-between" }}
+				>
+					<button style={BtnStyle1} onClick={this.ClickHandle} id="next">
+						next>
+					</button>
+					<button style={BtnStyle2} onClick={this.ClickHandle} id="back">
+						&lt;back
+					</button>
+				</div>
 			</div>
 		)
 	}
