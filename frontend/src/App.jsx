@@ -10,6 +10,7 @@ import Edit from "./components/edit-profile";
 import Register from "./components/registration";
 import Records from "./components/records";
 import DocAccounts from "./components/doc-accounts";
+import AddDocAccount from "./components/add-doc-account";
 import "./css/App.css";
 
 class App extends React.Component {
@@ -33,6 +34,7 @@ class App extends React.Component {
                 <Route path="/registration" component={Register} />
                 <Route path="/records" component={Records} />
                 <Route path="/doc-accounts" component={DocAccounts} />
+                <Route path="/add-doc-account" component={AddDocAccount} />
               </Switch>
             </div>
           </div>

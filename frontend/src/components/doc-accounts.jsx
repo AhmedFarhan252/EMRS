@@ -90,7 +90,7 @@ class Accounts extends React.Component {
           </button>
         </Link> */}
         <div className="row">
-          <div className="col-10">
+          <div className="col">
             <table className="table table-hover">
               <caption>
                 Showing {this.state.start + 1} - {this.state.start + this.number_of_elements} of {this.state.accounts.length}
@@ -139,8 +139,8 @@ class Accounts extends React.Component {
               </div>
             </div>
           </div>
-          <div className="col">
-            <Link to='#'>
+          <div className="col-1">
+            <Link to='/add-doc-account'>
               <button
                 type="button"
                 className="btn btn-outline-primary"
