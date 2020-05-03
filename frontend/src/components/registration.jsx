@@ -6,61 +6,34 @@ import axios from "axios";
 
 class Register extends Component {
   constructor() {
-    super();
+    super()
     this.state = {
       fname: "",
       lname: "",
       cnic: "",
       dob: "",
       contact: "",
-      gender: "male",
-      blood: "A+",
-      redirect: false,
-    };
+      gender: "",
+      blood: "",
+    }
   }
 
-  ChangeHandle = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
-  };
-
-  SubmissionHandle = (e) => {
-    e.preventDefault();
-    console.log("submit");
-    const { fname, lname, dob, contact, cnic, gender, blood } = this.state;
-    axios
-      .post("/patient/new", {
-        fname: fname,
-        lname: lname,
-        dob: dob,
-        num: contact,
-        cnic: cnic,
-        gender: gender,
-        bloodGroup: blood,
-      })
-      .then((res) => {
-        console.log(res);
-        this.setState({
-          redirect: true,
-        });
-      });
-  };
+  ChangeHandle = event => {
+    this.setState({ [event.target.name]: event.target.value })
+  }
 
   render() {
-    if (this.state.redirect) {
-      return <Redirect to="/patient/profile" />;
-    }
-
     const MainContainer = {
       height: "100vh",
       backgroundImage:
         "linear-gradient(198deg, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%)",
-    };
+    }
     const TitleStyle = {
       fontWeight: 700,
       fontSize: "2.5em",
       margin: "auto",
       color: "#d2202f",
-    };
+    }
     const HeaderStyle = {
       backgroundColor: "#eceeef",
       width: "90%",
@@ -71,17 +44,16 @@ class Register extends Component {
       borderTopRightRadius: "30px",
       display: "flex",
       justifyContent: "center",
-    };
+    }
     const inputForm = {
       width: "90%",
       height: "80%",
       margin: "auto",
       backgroundColor: "#eceeef",
-      //   height: "67vh",
       borderBottom: "5px solid #d2202f",
       borderBottomLeftRadius: "30px",
       borderBottomRightRadius: "30px",
-    };
+    }
     const InputStyle = {
       width: "100%",
       height: "6.7vh",
@@ -89,19 +61,19 @@ class Register extends Component {
       border: "1.5px solid #2d8fd5",
       borderRadius: "10px",
       textIndent: "1%",
-    };
+    }
     const LabelStyle = {
       color: "#006fbe",
       fontSize: "1em",
       marginTop: "3%",
       marginBottom: "0%",
-    };
+    }
     const ImgStyle = {
       padding: "1% 2%",
       margin: "auto",
       width: "10%",
       height: "10%",
-    };
+    }
     return (
       <div className="container-fluid" style={MainContainer}>
         <div className="row" style={{ height: "10%" }}></div>
@@ -110,14 +82,14 @@ class Register extends Component {
         </header>
         <div className="row justify-content-center" style={inputForm}>
           <h1 style={TitleStyle}>Create Account</h1>
-          <form onSubmit={this.SubmissionHandle}>
+          <form>
             <div
               className="col-11 justify-content-center"
               style={{ margin: "auto" }}
             >
               <label htmlFor="cnic" style={LabelStyle}>
                 CNIC
-              </label>
+							</label>
               <input
                 type="number"
                 name="cnic"
@@ -134,7 +106,7 @@ class Register extends Component {
               <div className="col-4">
                 <label htmlFor="fname" style={LabelStyle}>
                   First Name
-                </label>
+								</label>
                 <input
                   type="text"
                   name="fname"
@@ -145,7 +117,7 @@ class Register extends Component {
                 />
                 <label htmlFor="dob" style={LabelStyle}>
                   DOB
-                </label>
+								</label>
                 <input
                   type="date"
                   name="dob"
@@ -156,7 +128,7 @@ class Register extends Component {
                 />
                 <label htmlFor="gender" style={LabelStyle}>
                   Gender
-                </label>
+								</label>
                 <select
                   className="ArrowStyle"
                   name="gender"
@@ -165,22 +137,23 @@ class Register extends Component {
                   placeholder="Select Your Gender"
                   onChange={this.ChangeHandle}
                 >
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
                 </select>
                 <input
                   type="submit"
                   value="Create"
                   onSubmit={this.SubmissionHandle}
                   className={"ButtonStyle"}
+                  onChange={this.ChangeHandle}
                 ></input>
               </div>
 
               <div className="col-4 ">
                 <label htmlFor="lname" style={LabelStyle}>
                   Last Name
-                </label>
+								</label>
                 <input
                   type="text"
                   name="lname"
@@ -191,7 +164,7 @@ class Register extends Component {
                 />
                 <label htmlFor="contact" style={LabelStyle}>
                   Contact No.
-                </label>
+								</label>
                 <input
                   type="number"
                   name="contact"
@@ -202,7 +175,7 @@ class Register extends Component {
                 />
                 <label htmlFor="blood" style={LabelStyle}>
                   Blood Group
-                </label>
+								</label>
                 <select
                   className="ArrowStyle"
                   name="blood"
@@ -221,14 +194,19 @@ class Register extends Component {
                   <option value="O-">O-</option>
                 </select>
                 <NavLink to="/">
-                  <input type="button" value="Cancel" className="ButtonStyle" />
+                  <input
+                    type="button"
+                    value="Cancel"
+                    onSubmit={this.SubmissionHandle}
+                    className="ButtonStyle"
+                  />
                 </NavLink>
               </div>
             </div>
           </form>
         </div>
       </div>
-    );
+    )
   }
 }
 

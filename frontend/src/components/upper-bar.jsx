@@ -1,5 +1,5 @@
 import React from "react"
-import { NavLink } from 'react-router-dom'
+import { NavLink } from "react-router-dom"
 
 const BtnStyle = {
 	padding: "0.5em 1em",

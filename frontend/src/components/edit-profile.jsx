@@ -1,6 +1,5 @@
 import React, { Component } from "react"
 import { NavLink } from "react-router-dom"
-import Profile from "./profile.jsx"
 import "../css/edit-profile.css"
 
 class Edit extends Component {
@@ -13,7 +12,7 @@ class Edit extends Component {
   }
   render() {
     const MainContainer = {
-      height: "90vh",
+      height: "90%",
       backgroundColor: "#eceeef",
     }
     const TitleStyle = {
@@ -61,7 +60,7 @@ class Edit extends Component {
       <div className="container-fluid" style={MainContainer}>
         <div
           className="row jutify-content-center"
-          style={{ height: "10vh" }}
+          style={{ height: "9.5%" }}
         ></div>
         <header style={HeaderStyle}>
           <h1 style={TitleStyle}>
@@ -73,7 +72,7 @@ class Edit extends Component {
             <form>
               <label htmlFor="contact" style={LabelStyle}>
                 Contact No.
-              </label>
+							</label>
               <input
                 type="text"
                 id="contact"
@@ -83,7 +82,7 @@ class Edit extends Component {
               />
               <label htmlFor="fname" style={LabelStyle}>
                 First Name
-              </label>
+							</label>
               <input
                 type="text"
                 id="fname"
@@ -93,7 +92,7 @@ class Edit extends Component {
               />
               <label htmlFor="lname" style={LabelStyle}>
                 Last Name
-              </label>
+							</label>
               <input
                 type="text"
                 id="lname"

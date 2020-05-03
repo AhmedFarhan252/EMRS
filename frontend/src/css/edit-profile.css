@@ -15,9 +15,9 @@ input[type="text"]:focus {
 	color: rgba(8, 163, 253, 0.993);
 	transition-duration: 0.4s;
 	font-weight: bold;
-	margin: 97px;
+	margin: 9%;
 }
 .BtnStyle:hover {
-	background-color: rgba(8, 163, 253, 0.993);
+	background-color: rgba(9, 154, 238, 0.993);
 	color: white;
 }
