@@ -28,9 +28,9 @@ class Edit extends Component {
 			backgroundImage:
 				"linear-gradient(198deg, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%)",
 			color: "#d2202f",
-			width: "142.3vh",
+			width: "90%",
 			height: "8vh",
-			marginLeft: 91,
+			margin: "auto",
 			borderTop: "5px solid #d2202f",
 			borderBottom: "3px solid #2d8fd5",
 			borderTopLeftRadius: "30px",
@@ -39,6 +39,8 @@ class Edit extends Component {
 		const FormStyle = {
 			backgroundColor: "white",
 			height: "67vh",
+			width: "90%",
+			margin: "auto",
 			borderBottom: "5px solid #2d8fd5",
 			borderBottomLeftRadius: "30px",
 			borderBottomRightRadius: "30px",
@@ -67,57 +69,55 @@ class Edit extends Component {
 						E D I T<span style={SubStyle}>P R O F I L E</span>
 					</h1>
 				</header>
-				<div className="row justify-content-center">
-					<div className="col-10" style={FormStyle}>
-						<form>
-							<label htmlFor="contact" style={LabelStyle}>
-								Contact No.
-							</label>
+				<div className="col-11" style={FormStyle}>
+					<form>
+						<label htmlFor="contact" style={LabelStyle}>
+							Contact No.
+						</label>
+						<input
+							type="text"
+							id="contact"
+							style={InputStyle}
+							placeholder="Your contact number here"
+							onChange={this.ChangeHandle}
+						/>
+						<label htmlFor="fname" style={LabelStyle}>
+							First Name
+						</label>
+						<input
+							type="text"
+							id="fname"
+							style={InputStyle}
+							placeholder="Your first name here"
+							onChange={this.ChangeHandle}
+						/>
+						<label htmlFor="lname" style={LabelStyle}>
+							Last Name
+						</label>
+						<input
+							type="text"
+							id="lname"
+							style={InputStyle}
+							placeholder="Your last name here"
+							onChange={this.ChangeHandle}
+						/>
+						<NavLink to="/profile">
 							<input
-								type="text"
-								id="contact"
-								style={InputStyle}
-								placeholder="Your contact number here"
-								onChange={this.ChangeHandle}
-							/>
-							<label htmlFor="fname" style={LabelStyle}>
-								First Name
-							</label>
+								type="submit"
+								value="Save"
+								onSubmit={this.SubmissionHandle}
+								className="BtnStyle"
+							></input>
+						</NavLink>
+						<NavLink to="/profile">
 							<input
-								type="text"
-								id="fname"
-								style={InputStyle}
-								placeholder="Your first name here"
-								onChange={this.ChangeHandle}
+								type="button"
+								value="Cancel"
+								onSubmit={this.SubmissionHandle}
+								className="BtnStyle"
 							/>
-							<label htmlFor="lname" style={LabelStyle}>
-								Last Name
-							</label>
-							<input
-								type="text"
-								id="lname"
-								style={InputStyle}
-								placeholder="Your last name here"
-								onChange={this.ChangeHandle}
-							/>
-							<NavLink to="/profile">
-								<input
-									type="submit"
-									value="Save"
-									onSubmit={this.SubmissionHandle}
-									className="BtnStyle"
-								></input>
-							</NavLink>
-							<NavLink to="/profile">
-								<input
-									type="button"
-									value="Cancel"
-									onSubmit={this.SubmissionHandle}
-									className="BtnStyle"
-								/>
-							</NavLink>
-						</form>
-					</div>
+						</NavLink>
+					</form>
 				</div>
 			</div>
 		)
