@@ -5,21 +5,21 @@ input[type="text"]:focus {
 	color: rgba(8, 163, 253, 0.993);
 	opacity: 0.5;
 }
-.BtnStyle {
-	padding: 10px 130px;
-	font-size: 20px;
+.ButtonStyle {
+	margin-top: 10%;
+	margin-left: 15%;
+	padding: 3% 25%;
+	font-size: 1.5em;
 	background-color: #eceeef;
 	border: solid #eceeef;
 	border-radius: 10px;
-	color: #d2202f;
 	transition-duration: 0.4s;
 	font-weight: bold;
-	margin-left: 10px;
-	margin-top: 60px;
+	color: #006fbe;
 }
-.BtnStyle:hover {
-	background-color: #d2202f;
-	color: white;
+.ButtonStyle:hover {
+	background-color: #006fbe;
+	color: #ffffff;
 }
 .ArrowStyle {
 	position: relative;
