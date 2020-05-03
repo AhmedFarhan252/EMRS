@@ -9,6 +9,7 @@ import UpperBar from "./components/upper-bar.jsx";
 import Edit from "./components/edit-profile";
 import Register from "./components/registration";
 import Records from "./components/records";
+import DocAccounts from "./components/doc-accounts";
 import "./css/App.css";
 
 class App extends React.Component {
@@ -31,11 +32,12 @@ class App extends React.Component {
                 <Route path="/edit-profile" component={Edit} />
                 <Route path="/registration" component={Register} />
                 <Route path="/records" component={Records} />
+                <Route path="/doc-accounts" component={DocAccounts} />
               </Switch>
             </div>
           </div>
         </div>
-      </BrowserRouter>
+      </BrowserRouter >
     );
   }
 }
