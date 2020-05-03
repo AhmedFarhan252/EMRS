@@ -16,15 +16,17 @@ class View extends Component {
 			fontWeight: "bold",
 			fontVariant: "small-caps",
 			marginRight: "7%",
+			fontSize: "170%",
 		}
 		const HeadingStyle2 = {
 			fontWeight: "bold",
 			fontVariant: "small-caps",
-			marginLeft: "20%",
+			marginLeft: "28%",
+			fontSize: "170%",
 		}
 		const InfoStyle = {
 			fontWeight: 500,
-			fontSize: "180%",
+			fontSize: "130%",
 		}
 		const FlexStyle1 = {
 			display: "flex",
@@ -52,10 +54,15 @@ class View extends Component {
 			marginTop: "6%",
 		}
 		const CardStyle = {
-			width: "17%",
+			width: "22%",
 			padding: "3.5% 1%",
 			marginTop: "1.5%",
 			boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
+		}
+		const ScrollBar = {
+			overflowY: "scroll",
+			height: "100px",
+			padding: "1rem",
 		}
 		const { data } = this.state
 		return data.map(info => (
@@ -97,7 +104,7 @@ class View extends Component {
 				<div className="flex-container" style={FlexStyle4}>
 					<div className="card" style={CardStyle}>
 						<h4 style={{ marginBottom: "7%" }}>Prescription</h4>
-						<ul>
+						<ul style={ScrollBar}>
 							{data.map(observations => (
 								<li>{observations.title}</li>
 							))}
@@ -105,7 +112,7 @@ class View extends Component {
 					</div>
 					<div className="card" style={CardStyle}>
 						<h4 style={{ marginBottom: "5%" }}>Observations</h4>
-						<ul>
+						<ul style={ScrollBar}>
 							{data.map(observations => (
 								<li>{observations.title}</li>
 							))}
@@ -113,7 +120,7 @@ class View extends Component {
 					</div>
 					<div className="card" style={CardStyle}>
 						<h4 style={{ marginBottom: "5%" }}>Disease(s)</h4>
-						<ul>
+						<ul style={ScrollBar}>
 							{data.map(observations => (
 								<li>{observations.title}</li>
 							))}
