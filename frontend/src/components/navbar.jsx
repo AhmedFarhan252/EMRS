@@ -1,6 +1,6 @@
 import React from "react"
 import { NavLink } from "react-router-dom"
-import "../css/navbar.css"
+import "./css/navbar.css"
 import logo from "../img/LogoEmr.png"
 
 const NavBar = () => (
@@ -10,13 +10,10 @@ const NavBar = () => (
 		</div>
 		<ul>
 			<li>
-				<NavLink to="/profile">Profile</NavLink>
+				<NavLink to="/patient/profile">Profile</NavLink>
 			</li>
 			<li>
-				<NavLink to="/records">Records</NavLink>
-			</li>
-			<li>
-				<NavLink to="#">Appointments</NavLink>
+				<NavLink to="/patient/records">Records</NavLink>
 			</li>
 		</ul>
 	</div>
