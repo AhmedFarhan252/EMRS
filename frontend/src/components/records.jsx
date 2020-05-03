@@ -59,7 +59,8 @@ class Records extends Component {
 			<div className="container-fluid" style={ContainerStyle}>
 				<table className="table table-hover">
 					<caption>
-						shwoing {this.state.start + 5} of {this.state.length}
+						shwoing {this.state.start + 1} to {this.state.start + 5} of{" "}
+						{this.state.length}
 					</caption>
 					<thead className="bg-primary table-dark">
 						<tr>
