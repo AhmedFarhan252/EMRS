@@ -1,46 +1,49 @@
 import React from "react";
-import GoogleButton from "react-google-button";
+import logo from "../img/LogoEmr.png";
+import googleLogo from "../img/googleLogo.svg";
+import fbLogo from "../img/fbLogo.png";
+import "./css/login.css";
 
 class Login extends React.Component {
   render() {
-    const linkStyle = {
-      textDecoration: "none",
-    };
-    const fb_btn = {
-      width: "100%",
-      padding: "12px",
-      border: "none",
-      borderRadius: "4px",
-      margin: "5px 0",
-      opacity: "0.85",
-      display: "inline-block",
-      fontSize: "17px",
-      lineHeight: "20px",
-      textDecoration: "none",
-      backgroundColor: "#3B5998",
-      color: "white",
-    };
-
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
-            <div className="card card-signin my-5">
-              <div className="card-body">
-                <h5 className="card-title text-center">Sign In</h5>
-                <hr className="my-4"></hr>
-                <form className="form-signin ">
-                  <a href="http://localhost:5000/auth/google" style={linkStyle}>
-                    <div className="d-flex justify-content-center">
-                      <GoogleButton />
-                    </div>
-                  </a>
-                  <a href="http://localhost:5000/auth/facebook" style={fb_btn}>
-                    <i className="fa fa-facebook fa-fw"></i> Login with Facebook
-                  </a>
-                </form>
+      <div className="container-fluid MainContainer">
+        <div className="card CardStyle">
+          <div className="card-body">
+            <header className="HeaderStyle">
+              <img src={logo} alt="EMR" className="ImgStyle" />
+            </header>
+            <h5 className="card-title text-center HeadingStyle">Sign In</h5>
+            <hr className="my-4"></hr>
+            <form className="FormStyle">
+              <div className="FormBox">
+                <a
+                  href="http://localhost:5000/auth/google"
+                  className="linkStyle"
+                >
+                  <div className="google-btn">
+                    <img
+                      className="g-icon"
+                      src={googleLogo}
+                      alt="google logo"
+                    />
+
+                    <span className="btn-text">Sign in with Google</span>
+                  </div>
+                </a>
+                <div class="Separator">OR</div>
+                <a
+                  href="http://localhost:5000/auth/facebook"
+                  className="linkStyle"
+                >
+                  <div className="fb-btn">
+                    <img className="f-icon" src={fbLogo} alt="facebook logo" />
+
+                    <span className="fbbtn-text">Sign in with Facebook</span>
+                  </div>
+                </a>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>

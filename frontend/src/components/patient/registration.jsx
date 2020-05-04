@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { NavLink, Redirect } from "react-router-dom";
-import logo from "../img/LogoEmr.png";
-import "../css/registration.css";
-import axios from "axios";
+import React, { Component } from "react"
+import { NavLink, Redirect } from "react-router-dom"
+import logo from "../../img/LogoEmr.png"
+import "../css/registration.css"
+import axios from "axios"
 
 class Register extends Component {
   constructor() {
@@ -13,8 +13,9 @@ class Register extends Component {
       cnic: "",
       dob: "",
       contact: "",
-      gender: "",
-      blood: "",
+      gender: "male",
+      blood: "A+",
+      redirect: false,
     }
   }
 
@@ -22,7 +23,32 @@ class Register extends Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
+  SubmissionHandle = e => {
+    e.preventDefault()
+    const { fname, lname, dob, contact, cnic, gender, blood } = this.state
+    axios
+      .post("/patient/new", {
+        fname: fname,
+        lname: lname,
+        dob: dob,
+        num: contact,
+        cnic: cnic,
+        gender: gender,
+        bloodGroup: blood,
+      })
+      .then(res => {
+        console.log(res)
+        this.setState({
+          redirect: true,
+        })
+      })
+  }
+
   render() {
+    if (this.state.redirect) {
+      return <Redirect to="/p/profile" />
+    }
+
     const MainContainer = {
       height: "100vh",
       backgroundImage:
@@ -50,6 +76,7 @@ class Register extends Component {
       height: "80%",
       margin: "auto",
       backgroundColor: "#eceeef",
+      //   height: "67vh",
       borderBottom: "5px solid #d2202f",
       borderBottomLeftRadius: "30px",
       borderBottomRightRadius: "30px",
@@ -82,7 +109,7 @@ class Register extends Component {
         </header>
         <div className="row justify-content-center" style={inputForm}>
           <h1 style={TitleStyle}>Create Account</h1>
-          <form>
+          <form onSubmit={this.SubmissionHandle}>
             <div
               className="col-11 justify-content-center"
               style={{ margin: "auto" }}
@@ -93,7 +120,7 @@ class Register extends Component {
               <input
                 type="number"
                 name="cnic"
-                value={this.state.value}
+                value={this.state.cnic}
                 style={InputStyle}
                 placeholder="CNIC NUMBER"
                 onChange={this.ChangeHandle}
@@ -137,16 +164,15 @@ class Register extends Component {
                   placeholder="Select Your Gender"
                   onChange={this.ChangeHandle}
                 >
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
                 </select>
                 <input
                   type="submit"
                   value="Create"
                   onSubmit={this.SubmissionHandle}
                   className={"ButtonStyle"}
-                  onChange={this.ChangeHandle}
                 ></input>
               </div>
 
@@ -196,8 +222,7 @@ class Register extends Component {
                 <NavLink to="/">
                   <input
                     type="button"
-                    value="Cancel"
-                    onSubmit={this.SubmissionHandle}
+                    value="Register"
                     className="ButtonStyle"
                   />
                 </NavLink>

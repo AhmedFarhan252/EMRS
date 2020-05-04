@@ -1,0 +1,26 @@
+input[type="text"]:focus {
+  border-radius: 15px;
+  border: 2px solid hsl(205, 67%, 51%);
+}
+::placeholder {
+  color: rgba(8, 163, 253, 0.993);
+  opacity: 0.5;
+}
+input:focus {
+  outline: none;
+}
+.BtnStyle {
+  padding: 1.5% 10%;
+  font-size: 20px;
+  background-color: white;
+  border: solid white;
+  border-radius: 10px;
+  color: rgba(8, 163, 253, 0.993);
+  transition-duration: 0.4s;
+  font-weight: bold;
+  margin: 9%;
+}
+.BtnStyle:hover {
+  background-color: rgba(9, 154, 238, 0.993);
+  color: white;
+}

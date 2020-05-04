@@ -1,30 +1,56 @@
 import React, { Component } from "react"
+import { NavLink } from "react-router-dom"
 import axios from "axios"
-import "../css/view-records.css"
+import "../css/records-styles.css"
 
-class View extends Component {
-	state = { data: [] }
+class Add extends Component {
+	state = {
+		data: [],
+		today: null,
+		prescription: "",
+		observations: "",
+		notes: "",
+		diseases: "",
+	}
 	componentDidMount() {
 		axios.get("https://jsonplaceholder.typicode.com/posts/").then(dummy => {
 			this.setState({
 				data: dummy.data.slice(0, 1),
 			})
 		})
+		let present = new Date()
+		this.setState({
+			today:
+				present.getDate() +
+				"/" +
+				(present.getMonth() + 1) +
+				"/" +
+				present.getFullYear(),
+		})
+	}
+	InputHandle = e => {
+		this.setState({ [e.target.id]: e.target.value })
+		console.log(this.state.prescription)
+	}
+	ClickHandle = e => {
+		//data off to backend
 	}
 	render() {
 		const HeadingStyle1 = {
 			fontWeight: "bold",
 			fontVariant: "small-caps",
 			marginRight: "7%",
+			fontSize: "170%",
 		}
 		const HeadingStyle2 = {
 			fontWeight: "bold",
 			fontVariant: "small-caps",
-			marginLeft: "20%",
+			marginLeft: "28%",
+			fontSize: "170%",
 		}
 		const InfoStyle = {
 			fontWeight: 500,
-			fontSize: "180%",
+			fontSize: "130%",
 		}
 		const FlexStyle1 = {
 			display: "flex",
@@ -46,16 +72,21 @@ class View extends Component {
 		}
 		const FlexStyle4 = {
 			display: "flex",
-			justifyContent: "space-around",
+			justifyContent: "space-evenly",
 			width: "80%",
 			marginLeft: "5%",
 			marginTop: "6%",
 		}
 		const CardStyle = {
-			width: "17%",
+			width: "22%",
 			padding: "3.5% 1%",
 			marginTop: "1.5%",
 			boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
+		}
+		const ScrollBar = {
+			overflowY: "scroll",
+			height: "100px",
+			padding: "1rem",
 		}
 		const { data } = this.state
 		return data.map(info => (
@@ -65,7 +96,7 @@ class View extends Component {
 						Medical Record #{info.id}
 					</h1>
 					<h1 className="col" style={HeadingStyle2}>
-						Date : {info.id}
+						Date : {this.state.today}
 					</h1>
 				</div>
 				<div className="flex-container" style={FlexStyle2}>
@@ -96,33 +127,54 @@ class View extends Component {
 				</div>
 				<div className="flex-container" style={FlexStyle4}>
 					<div className="card" style={CardStyle}>
-						<h4 style={{ marginBottom: "7%" }}>Prescription</h4>
-						<ul>
-							{data.map(observations => (
-								<li>{observations.title}</li>
-							))}
-						</ul>
+						<h4 style={{ marginBottom: "5%" }}>Prescription</h4>
+						<textarea
+							className="txtarea"
+							style={ScrollBar}
+							id="prescription"
+							onChange={this.InputHandle}
+						></textarea>
 					</div>
 					<div className="card" style={CardStyle}>
 						<h4 style={{ marginBottom: "5%" }}>Observations</h4>
-						<ul>
-							{data.map(observations => (
-								<li>{observations.title}</li>
-							))}
-						</ul>
+						<textarea
+							className="txtarea"
+							style={ScrollBar}
+							id="observations"
+							onChange={this.InputHandle}
+						></textarea>
+					</div>
+					<div className="card" style={CardStyle}>
+						<h4 style={{ marginBottom: "5%" }}>Private Notes</h4>
+						<textarea
+							className="txtarea"
+							style={ScrollBar}
+							id="notes"
+							onChange={this.InputHandle}
+						></textarea>
 					</div>
 					<div className="card" style={CardStyle}>
 						<h4 style={{ marginBottom: "5%" }}>Disease(s)</h4>
-						<ul>
-							{data.map(observations => (
-								<li>{observations.title}</li>
-							))}
-						</ul>
+						<textarea
+							className="txtarea"
+							style={ScrollBar}
+							id="diseases"
+							onChange={this.InputHandle}
+						></textarea>
 					</div>
 				</div>
+				<NavLink to="/d/records1">
+					<button
+						type="button"
+						class="btn btn-primary btn-lg"
+						style={{ margin: "6.5%" }}
+					>
+						Add
+					</button>
+				</NavLink>
 			</div>
 		))
 	}
 }
 
-export default View
+export default Add

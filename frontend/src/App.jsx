@@ -1,12 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Route, Switch } from "react-router-dom";
-import Register from "./components/registration";
+import Register from "./components/patient/registration";
 import Login from "./components/login";
-import Patient from "./components/patient";
-import Doctor from "./components/doctor";
-import Admin from "./components/admin";
-import "./css/App.css";
+import Patient from "./components/patient/patientMain";
+import Doctor from "./components/doctor/doctorMain";
+import Admin from "./components/admin/adminMain";
+import Error from "./components/error";
+// import AuthenticatePatient from "./components/authenticatePatient";
+import "./App.css";
 
 class App extends React.Component {
   render() {
@@ -16,9 +18,10 @@ class App extends React.Component {
           <Route exact path="/" component={Login} />
           <Route path="/newprofile" component={Register} />
 
-          <Route path="/patient" component={Patient} />
-          <Route path="/doctor" component={Doctor} />
-          <Route path="/admin" component={Admin} />
+          <Route path="/p" component={Patient} />
+          <Route path="/d" component={Doctor} />
+          <Route path="/a" component={Admin} />
+          <Route component={Error} />
         </Switch>
       </Router>
     );

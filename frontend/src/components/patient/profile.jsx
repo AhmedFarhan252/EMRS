@@ -1,13 +1,12 @@
-import React, { Component } from "react"
-import axios from "axios"
-import { NavLink } from "react-router-dom"
+import React, { Component } from "react";
+import axios from "axios";
+import { NavLink } from "react-router-dom";
 
 class Profile extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-      id: 1,
       fname: "",
       lname: "",
       cnic: "",
@@ -16,18 +15,17 @@ class Profile extends Component {
       gender: "",
       blood: "",
       num: "",
-    }
+    };
   }
 
-  getID = num => {
-    const req = "/patient/profile/" + num
-    return axios.get(req)
-  }
+  getID = () => {
+    const req = "/patient/profile/";
+    return axios.get(req);
+  };
 
   componentDidMount = () => {
-    this.getID(this.state.id).then(d => {
-      const data = d.data.data
-      console.log(data)
+    this.getID().then((d) => {
+      const data = d.data.data;
       const {
         f_name,
         l_name,
@@ -37,7 +35,7 @@ class Profile extends Component {
         gender,
         blood,
         phone_num,
-      } = data
+      } = data;
 
       this.setState({
         fname: f_name,
@@ -48,65 +46,31 @@ class Profile extends Component {
         gender: gender,
         blood: blood,
         num: phone_num,
-      })
-    })
-  }
-
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    })
-  }
-
-  handleClick = e => {
-    e.preventDefault()
-    this.getID(this.state.id).then(d => {
-      const data = d.data.data
-      const {
-        f_name,
-        l_name,
-        cnic,
-        dob,
-        email,
-        gender,
-        blood,
-        phone_num,
-      } = data
-
-      this.setState({
-        fname: f_name,
-        lname: l_name,
-        cnic: cnic,
-        dob: dob,
-        email: email,
-        gender: gender,
-        blood: blood,
-        num: phone_num,
-      })
-    })
-  }
+      });
+    });
+  };
 
   render() {
     const BtnStyle = {
       padding: "5px 25px",
       fontSize: "16px",
       marginLeft: 27,
-    }
+    };
     const InfoStyle = {
       padding: "7px 36px",
       fontSize: "20px",
       fontWeight: "bold",
-    }
+    };
     const LabelStyle = {
       padding: "4px 36px",
       fontSize: "12px",
-    }
+    };
     const MainContainer = {
       height: "90%",
       backgroundColor: "#eceeef",
-    }
+    };
 
-    const { fname, lname, cnic, dob, email, gender, blood, num } = this.state
+    const { fname, lname, cnic, dob, email, gender, blood, num } = this.state;
 
     return (
       <div className="container-fluid" style={MainContainer}>
@@ -135,32 +99,28 @@ class Profile extends Component {
           <div className="col">CONTACT NO.</div>
         </div>
         <div className="row" style={{ padding: "45px 35px" }}></div>
-        <NavLink to="/patient/edit-profile">
+        <NavLink
+          to={{
+            pathname: "edit-profile",
+            state: {
+              f_name: this.state.fname,
+              l_name: this.state.lname,
+              contact: this.state.num,
+            },
+          }}
+        >
           <button
             type="button"
             className="btn btn-outline-primary"
             style={BtnStyle}
           >
             Edit Profile
-                    </button>
+          </button>
         </NavLink>
         <div className="row" style={{ padding: "45px 35px" }}></div>
-        <form>
-          <label>
-            ID:
-                        <input
-              type="text"
-              name="id"
-              onChange={e => this.handleChange(e)}
-            />
-            <button onClick={e => this.handleClick(e)}>
-              Get Patient
-                        </button>
-          </label>
-        </form>
       </div>
-    )
+    );
   }
 }
 
-export default Profile
+export default Profile;

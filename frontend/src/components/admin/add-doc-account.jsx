@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
-import logo from "../img/LogoEmr.png";
+import logo from "../../img/LogoEmr.png";
 
 class AddDocAccount extends React.Component {
   constructor() {
@@ -40,7 +40,7 @@ class AddDocAccount extends React.Component {
 
   render() {
     if (this.state.redirect) {
-      return <Redirect to="/admin/doc-accounts" />;
+      return <Redirect to="/a/doc-accounts" />;
     }
 
     const MainContainer = {
@@ -194,7 +194,7 @@ class AddDocAccount extends React.Component {
               <div
                 className="col-4"
               >
-                <Link to="/">
+                <Link to="/a/doc-accounts">
                   <input type="button" value="Cancel" className="ButtonStyle" />
                 </Link>
               </div>
