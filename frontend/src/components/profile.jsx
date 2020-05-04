@@ -135,7 +135,7 @@ class Profile extends Component {
           <div className="col">CONTACT NO.</div>
         </div>
         <div className="row" style={{ padding: "45px 35px" }}></div>
-        <NavLink to="/edit-profile">
+        <NavLink to="/patient/edit-profile">
           <button
             type="button"
             className="btn btn-outline-primary"

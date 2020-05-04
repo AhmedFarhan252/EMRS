@@ -140,7 +140,7 @@ class Accounts extends React.Component {
             </div>
           </div>
           <div className="col-1">
-            <Link to='/add-doc-account'>
+            <Link to='/admin/add-doc-account'>
               <button
                 type="button"
                 className="btn btn-outline-primary"

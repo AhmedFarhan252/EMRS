@@ -100,7 +100,7 @@ class Edit extends Component {
                 placeholder="Your last name here"
                 onChange={this.ChangeHandle}
               />
-              <NavLink to="/profile">
+              <NavLink to="/patient/profile">
                 <input
                   type="submit"
                   value="Save"
@@ -108,7 +108,7 @@ class Edit extends Component {
                   className="BtnStyle"
                 ></input>
               </NavLink>
-              <NavLink to="/profile">
+              <NavLink to="/patient/profile">
                 <input
                   type="button"
                   value="Cancel"
