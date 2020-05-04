@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import axios from "axios"
-import "../css/view-records.css"
+import "../css/records-style.css"
 
 class View extends Component {
 	state = { data: [] }
