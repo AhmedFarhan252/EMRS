@@ -82,7 +82,7 @@ class DocRecords extends Component {
 								<td>{tuple.id}</td>
 								<td>{tuple.id}</td>
 								<td>
-									<NavLink to="/Dr/view-record">
+									<NavLink to="/d/view-record">
 										<button
 											type="button"
 											className="btn btn-outline-primary"

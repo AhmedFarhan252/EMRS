@@ -106,7 +106,7 @@ class DocProfile extends Component {
 					<div className="col">CONTACT NO.</div>
 				</div>
 				<div className="row" style={{ padding: "45px 35px" }}></div>
-				<NavLink to="/Dr/edit-profile">
+				<NavLink to="/d/edit-profile">
 					<button
 						type="button"
 						className="btn btn-outline-primary"

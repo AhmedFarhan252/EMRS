@@ -101,7 +101,7 @@ class DocEdit extends Component {
 							placeholder="Your last name here"
 							onChange={this.ChangeHandle}
 						/>
-						<NavLink to="/Dr/profile">
+						<NavLink to="/d/profile">
 							<input
 								type="submit"
 								value="Save"
@@ -109,7 +109,7 @@ class DocEdit extends Component {
 								className="BtnStyle"
 							></input>
 						</NavLink>
-						<NavLink to="/Dr/profile">
+						<NavLink to="/d/profile">
 							<input
 								type="button"
 								value="Cancel"
