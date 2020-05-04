@@ -2,8 +2,12 @@ import React, { Component } from "react"
 import { Route, Switch } from "react-router-dom"
 import NavBar from "../navbar"
 import UpperBar from "../upper-bar"
-import Profile from "../Dr/profile"
-import Edit from "../Dr/edit-profile"
+import DocProfile from "../Dr/profile"
+import DocEdit from "../Dr/edit-profile"
+import DocRecords from "./components/Dr/records.jsx"
+import DocRecords1 from "./components/Dr/records1.jsx"
+import DocView from "./components/Dr/view-record.jsx"
+import Add from "./components/Dr/add-records.jsx"
 
 class Doctor extends Component {
 	render() {
@@ -18,8 +22,12 @@ class Doctor extends Component {
 					<div className={"rightside"}>
 						<UpperBar />
 						<Switch>
-							<Route path="/Dr/profile" component={Profile} />
-							<Route path="/Dr/edit-profile" component={Edit} />
+							<Route path="/Dr/profile" component={DocProfile} />
+							<Route path="/Dr/edit-profile" component={DocEdit} />
+							<Route path="/Dr/add-records" component={Add} />
+							<Route path="/Dr/records" component={DocRecords} />
+							<Route path="/Dr/records1" component={DocRecords1} />
+							<Route path="/Dr/view-record" component={DocView} />
 						</Switch>
 					</div>
 				</div>
