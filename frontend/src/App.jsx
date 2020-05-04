@@ -18,9 +18,9 @@ class App extends React.Component {
           <Route exact path="/" component={Login} />
           <Route path="/newprofile" component={Register} />
 
-          <AuthenticatePatient path="/patient" component={Patient} />
-          <Route path="/doctor" component={Doctor} />
-          <Route path="/admin" component={Admin} />
+          <AuthenticatePatient path="/p" component={Patient} />
+          <Route path="/d" component={Doctor} />
+          <Route path="/a" component={Admin} />
           <Route component={Error} />
         </Switch>
       </Router>
