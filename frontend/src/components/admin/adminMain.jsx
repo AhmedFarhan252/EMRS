@@ -4,6 +4,10 @@ import { Route, Switch } from "react-router-dom";
 import NavBar from "./navbar.jsx";
 import UpperBar from "../upper-bar.jsx";
 
+import DocAccounts from "./doc-accounts";
+import AddDocAccounts from "./add-doc-account";
+import ListDiseases from "./list-diseases";
+
 class Admin extends Component {
   render() {
     return (
@@ -17,7 +21,9 @@ class Admin extends Component {
           <div className={"rightside"}>
             <UpperBar />
             <Switch>
-              {/* <Route path="/admin/something" component={Something} /> Add routes here*/}
+              <Route path="/a/doc-accounts" component={DocAccounts} />
+              <Route path="/a/add-doc-account" component={AddDocAccounts} />
+              <Route path="/a/list-diseases" component={ListDiseases} />
             </Switch>
           </div>
         </div>

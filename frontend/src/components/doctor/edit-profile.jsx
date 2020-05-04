@@ -61,7 +61,7 @@ class DocEdit extends Component {
 		return (
 			<div className="container-fluid" style={MainContainer}>
 				<div
-					className="row jutify-content-center"
+					className="row justify-content-center"
 					style={{ height: "9.5%" }}
 				></div>
 				<header style={HeaderStyle}>

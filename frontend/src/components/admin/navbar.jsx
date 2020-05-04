@@ -10,13 +10,10 @@ const NavBar = () => (
     </div>
     <ul>
       <li>
-        <NavLink to="/patient/profile">Profile</NavLink>
+        <NavLink to="/a/doc-accounts">Accounts</NavLink>
       </li>
       <li>
-        <NavLink to="#">Records</NavLink>
-      </li>
-      <li>
-        <NavLink to="#">Appointments</NavLink>
+        <NavLink to="/a/list-diseases">Diseases</NavLink>
       </li>
     </ul>
   </div>
