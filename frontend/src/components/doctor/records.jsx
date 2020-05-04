@@ -40,19 +40,22 @@ class DocRecords extends Component {
 		}
 		const BtnStyle1 = {
 			padding: "0.5% 0.5%",
-			fontSize: "40px",
-			float: "right",
+			fontSize: "500%",
 			border: "solid #eceeef",
+			backgroundColor: "#eceeef",
 			color: "#2d8fd5",
 			fontStyle: "italic",
+			marginLeft: "30%",
 		}
 		const BtnStyle2 = {
 			padding: "0.5% 0.5%",
-			fontSize: "40px",
+			fontSize: "500%",
 			float: "left",
+			backgroundColor: "#eceeef",
 			border: "solid #eceeef",
 			color: "#2d8fd5",
 			fontStyle: "italic",
+			marginLeft: "28%",
 		}
 		const { data } = this.state
 		return (
@@ -95,13 +98,13 @@ class DocRecords extends Component {
 				</table>
 				<div
 					className="flex-container"
-					style={{ justifyContent: "space-between" }}
+					style={{ justifyContent: "space-evenly" }}
 				>
 					<button style={BtnStyle1} onClick={this.ClickHandle} id="next">
-						next>
+						>
 					</button>
 					<button style={BtnStyle2} onClick={this.ClickHandle} id="back">
-						&lt;back
+						&lt;
 					</button>
 				</div>
 			</div>
