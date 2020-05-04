@@ -5,6 +5,7 @@ import NavBar from "./navbar.jsx";
 import UpperBar from "./upper-bar.jsx";
 import DocAccounts from "./doc-accounts.jsx";
 import AddDocAccounts from "./add-doc-account.jsx";
+import ListDiseases from "./list-diseases.jsx";
 
 class Admin extends Component {
   render() {
@@ -22,6 +23,7 @@ class Admin extends Component {
               <Route exact path="/admin/" component={() => <Redirect to="/admin/doc-accounts" />} />
               <Route path="/admin/doc-accounts" component={DocAccounts} />
               <Route path="/admin/add-doc-account" component={AddDocAccounts} />
+              <Route path="/admin/list-diseases" component={ListDiseases} />
             </Switch>
           </div>
         </div>

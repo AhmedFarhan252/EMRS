@@ -48,7 +48,7 @@ const NavBar = () => (
               <NavLink to="/admin/doc-accounts">Accounts</NavLink>
             </li>
             <li>
-              <NavLink to="#">Diseases</NavLink>
+              <NavLink to="/admin/list-diseases">Diseases</NavLink>
             </li>
           </ul>
         )} />
