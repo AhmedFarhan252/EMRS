@@ -4,23 +4,6 @@ const router = express.Router();
 const patientController = require("../controllers/patientController");
 const db = require("../db/dbConnector");
 
-// // Authentication check middleware: Checks if user is authorized
-// router.use((req, res, next) => {
-//   console.log("patient authcheck");
-//   if (!req.user) {
-//     //User not logged in
-//     res.redirect("http://localhost:3000/");
-//   } else {
-//     //Check user role
-//     if (req.user.role === "patient") {
-//       next();
-//     } else {
-//       //Unauthorized so redirect
-//       res.redirect("http://localhost:3000/");
-//     }
-//   }
-// });
-
 //Add table id from patient table to req.
 router.use((req, res, next) => {
   const { id, role } = req.user;

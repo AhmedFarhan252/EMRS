@@ -6,12 +6,11 @@ var logger = require("morgan");
 var passportSetup = require("./config/passportSetup");
 var cookieSession = require("cookie-session");
 var passport = require("passport");
-var cors = require("cors");
 require("dotenv").config();
 
 var app = express();
 
-//Add cookie sessions
+//Add cookie sessions of 1 hour
 app.use(
   cookieSession({
     maxAge: 1 * 1000 * 60 * 60,
