@@ -5,6 +5,7 @@ import Profile from "./profile.jsx";
 import NavBar from "./navbar.jsx";
 import UpperBar from "./upper-bar.jsx";
 import Edit from "./edit-profile.jsx";
+import Records from "./records.jsx";
 
 class Patient extends Component {
   render() {
@@ -22,6 +23,7 @@ class Patient extends Component {
               <Route exact path="/patient" component={() => <Redirect to="/patient/profile" />} />
               <Route path="/patient/profile" component={Profile} />
               <Route path="/patient/edit-profile" component={Edit} />
+              <Route path="/patient/records" component={Records} />
             </Switch>
           </div>
         </div>

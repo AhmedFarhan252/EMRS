@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
+import logo from "../img/LogoEmr.png";
 
 class AddDocAccount extends React.Component {
   constructor() {
@@ -43,9 +44,10 @@ class AddDocAccount extends React.Component {
     }
 
     const MainContainer = {
-      height: "100vh",
-      backgroundImage:
-        "linear-gradient(198deg, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%)",
+      // height: "100vh",
+      // backgroundImage:
+      //   "linear-gradient(198deg, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%)",
+      marginTop: "5%",
     };
     const TitleStyle = {
       fontWeight: 700,
@@ -53,10 +55,22 @@ class AddDocAccount extends React.Component {
       margin: "auto",
       color: "#d2202f",
     };
+    const HeaderStyle = {
+      backgroundColor: "#eceeef",
+      width: "90%",
+      height: "5%",
+      margin: "auto",
+      borderTop: "5px solid #d2202f",
+      borderTopLeftRadius: "30px",
+      borderTopRightRadius: "30px",
+      display: "flex",
+      justifyContent: "center",
+    };
     const inputForm = {
       width: "90%",
       height: "80%",
       margin: "auto",
+      // marginTop: "5%",
       backgroundColor: "#eceeef",
       //   height: "67vh",
       borderBottom: "5px solid #d2202f",
@@ -77,9 +91,19 @@ class AddDocAccount extends React.Component {
       marginTop: "3%",
       marginBottom: "0%",
     };
+    const ImgStyle = {
+      padding: "1% 2%",
+      margin: "auto",
+      width: "10%",
+      height: "10%",
+    };
 
     return (
       <div className="container-fluid" style={MainContainer}>
+        {/* <div> */}
+        <header style={HeaderStyle} >
+          <img src={logo} alt="EMR" style={ImgStyle} />
+        </header>
         <div className="row justify-content-center" style={inputForm}>
           <h1 style={TitleStyle}>Create Account</h1>
           <form onSubmit={this.SubmissionHandle}>
