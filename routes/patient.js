@@ -62,14 +62,14 @@ router.post("/profile", (req, res) => {
   patientController.updateProfile(req, res);
 });
 
-// Record page route
-router.get("/records/:id", (req, res) => {
-  patientController.getRecords(req, res);
-});
-
 // Single record route
 router.post("/records", (req, res) => {
   patientController.singleRecord(req, res);
+});
+
+// Record page route
+router.post("/recordslist", (req, res) => {
+  patientController.getRecords(req, res);
 });
 
 // Appointments route

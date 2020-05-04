@@ -7,7 +7,9 @@ const authController = require("../controllers/authController");
 router.get("/logout", (req, res) => {
   //handle with Passport
   req.logout();
-  res.redirect("http://localhost:3000/");
+  res.json({
+    status: "ok",
+  });
 });
 
 // Authentication with Google
@@ -60,5 +62,44 @@ router.get(
     }
   }
 );
+
+//Authenticate patient session
+router.get("/patient", (req, res) => {
+  //Check if session is present
+  if (!req.user) {
+    const ret = {
+      hasSession: false,
+      isRegistered: false,
+    };
+    res.json(ret);
+    return;
+  }
+
+  //Check if the user is a patient
+  if (req.user.role !== "patient") {
+    const ret = {
+      hasSession: false,
+      isRegistered: false,
+    };
+    res.json(ret);
+  } else {
+    //Check if user is registered
+    authController.verifyRegistration(req, res).then((isRegistered) => {
+      if (isRegistered) {
+        const ret = {
+          hasSession: true,
+          isRegistered: true,
+        };
+        res.json(ret);
+      } else {
+        const ret = {
+          hasSession: true,
+          isRegistered: false,
+        };
+        res.json(ret);
+      }
+    });
+  }
+});
 
 module.exports = router;
