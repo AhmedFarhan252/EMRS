@@ -10,6 +10,7 @@ import DocRecords from "./records.jsx"
 import DocRecords1 from "./records1.jsx"
 import DocView from "./view-record.jsx"
 import Add from "./add-records.jsx"
+import Viz from "./viz"
 
 class Doctor extends Component {
 	render() {
@@ -30,6 +31,7 @@ class Doctor extends Component {
 							<Route path="/d/records" component={DocRecords} />
 							<Route path="/d/records1" component={DocRecords1} />
 							<Route path="/d/view-record" component={DocView} />
+							<Route path="/d/viz" component={Viz} />
 						</Switch>
 					</div>
 				</div>
