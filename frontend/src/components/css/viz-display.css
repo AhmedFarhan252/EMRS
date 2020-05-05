@@ -1,0 +1,8 @@
+.FlexStyle {
+	display: flex;
+	background-color: white;
+	width: 55%;
+	margin-top: 10%;
+	margin-left: 22%;
+	border-radius: 7%;
+}
