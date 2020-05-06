@@ -9,6 +9,7 @@ import Admin from "./components/admin/adminMain";
 import Error from "./components/error";
 import AuthenticatePatient from "./components/authenticatePatient";
 import AuthenticateDoctor from "./components/authenticateDoctor";
+import AuthenticateAdmin from "./components/authenticateAdmin";
 import "./App.css";
 
 class App extends React.Component {
@@ -21,7 +22,7 @@ class App extends React.Component {
 
           <AuthenticatePatient path="/p" component={Patient} />
           <AuthenticateDoctor path="/d" component={Doctor} />
-          <Route path="/a" component={Admin} />
+          <AuthenticateAdmin path="/a" component={Admin} />
           <Route component={Error} />
         </Switch>
       </Router>
