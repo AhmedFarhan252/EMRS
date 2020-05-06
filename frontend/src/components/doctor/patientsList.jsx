@@ -105,8 +105,8 @@ class PatList extends Component {
       <div className="container-fluid" style={ContainerStyle}>
         <table className="table table-hover">
           <caption>
-            showing {this.state.offset + 1} to {this.state.offset + 5} of{" "}
-            {this.state.total}
+            showing {this.state.offset + 1} to{" "}
+            {this.state.offset + this.state.data.length} of {this.state.total}
           </caption>
           <thead className="bg-primary table-dark">
             <tr>
