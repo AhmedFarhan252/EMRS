@@ -37,4 +37,9 @@ router.get("/patient", (req, res) => {
   authController.authPatient(req, res);
 });
 
+//Authenticate doctor session
+router.get("/doctor", (req, res) => {
+  authController.authDoctor(req, res);
+});
+
 module.exports = router;

@@ -2,32 +2,10 @@
 const express = require("express");
 const router = express.Router();
 const patientController = require("../controllers/patientController");
-const db = require("../db/dbConnector");
 
 //Add table id from patient table to req.
 router.use((req, res, next) => {
-  const { id, role } = req.user;
-  let tid = -1;
-  if (role === "patient") {
-    db.oneOrNone(
-      "select patient.id from patient,login where login.id=$1 and login.email = patient.email;",
-      [id]
-    ).then((data) => {
-      if (data) {
-        tid = data.id;
-
-        const user_data = {
-          id: id,
-          role: "patient",
-          tid: tid,
-        };
-        req.user = user_data;
-        next();
-      } else {
-        next();
-      }
-    });
-  }
+  patientController.addTableId(req, res, next);
 });
 
 // New account route
