@@ -7,7 +7,8 @@ import Patient from "./components/patient/patientMain";
 import Doctor from "./components/doctor/doctorMain";
 import Admin from "./components/admin/adminMain";
 import Error from "./components/error";
-// import AuthenticatePatient from "./components/authenticatePatient";
+import AuthenticatePatient from "./components/authenticatePatient";
+import AuthenticateDoctor from "./components/authenticateDoctor";
 import "./App.css";
 
 class App extends React.Component {
@@ -18,8 +19,8 @@ class App extends React.Component {
           <Route exact path="/" component={Login} />
           <Route path="/newprofile" component={Register} />
 
-          <Route path="/p" component={Patient} />
-          <Route path="/d" component={Doctor} />
+          <AuthenticatePatient path="/p" component={Patient} />
+          <AuthenticateDoctor path="/d" component={Doctor} />
           <Route path="/a" component={Admin} />
           <Route component={Error} />
         </Switch>
