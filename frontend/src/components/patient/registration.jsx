@@ -76,7 +76,6 @@ class Register extends Component {
 			height: "80%",
 			margin: "auto",
 			backgroundColor: "#eceeef",
-			//   height: "67vh",
 			borderBottom: "5px solid #d2202f",
 			borderBottomLeftRadius: "30px",
 			borderBottomRightRadius: "30px",
@@ -118,7 +117,8 @@ class Register extends Component {
 								CNIC
 							</label>
 							<input
-								type="number"
+								pattern="[0-9]{13}"
+								type="text"
 								name="cnic"
 								value={this.state.cnic}
 								style={InputStyle}
@@ -135,6 +135,7 @@ class Register extends Component {
 									First Name
 								</label>
 								<input
+									pattern="[A-Z a-z]"
 									type="text"
 									name="fname"
 									value={this.state.fname}
@@ -147,6 +148,8 @@ class Register extends Component {
 								</label>
 								<input
 									type="date"
+									//onFocus="(this.type='date')"
+									//onBlur="(this.type='text')"
 									name="dob"
 									style={InputStyle}
 									value={this.state.dob}
@@ -181,6 +184,7 @@ class Register extends Component {
 									Last Name
 								</label>
 								<input
+									pattern="[A-Z a-z]"
 									type="text"
 									name="lname"
 									value={this.state.lname}
@@ -192,7 +196,8 @@ class Register extends Component {
 									Contact No.
 								</label>
 								<input
-									type="number"
+									pattern="[0-9]{11}"
+									type="text"
 									name="contact"
 									value={this.state.contact}
 									style={InputStyle}
@@ -222,7 +227,7 @@ class Register extends Component {
 								<NavLink to="/">
 									<input
 										type="button"
-										value="Register"
+										value="Cancel"
 										className="ButtonStyle"
 									/>
 								</NavLink>

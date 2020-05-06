@@ -110,6 +110,7 @@ class Edit extends Component {
 							Contact No.
 						</label>
 						<input
+							pattern="[0-9]{11}"
 							type="text"
 							name="num"
 							value={this.state.num}
@@ -121,6 +122,7 @@ class Edit extends Component {
 							First Name
 						</label>
 						<input
+							pattern="[A-Z a-z]"
 							type="text"
 							name="fname"
 							value={this.state.fname}
@@ -132,6 +134,7 @@ class Edit extends Component {
 							Last Name
 						</label>
 						<input
+							pattern="[A-Z a-z]"
 							type="text"
 							name="lname"
 							value={this.state.lname}
