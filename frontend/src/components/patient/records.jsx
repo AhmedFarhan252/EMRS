@@ -1,16 +1,16 @@
-import React, { Component } from "react"
-import axios from "axios"
-import { NavLink } from "react-router-dom"
+import React, { Component } from "react";
+import axios from "axios";
+import { NavLink } from "react-router-dom";
 
 class Records extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       data: [],
       offset: 0,
       limit: 5,
       total: 0,
-    }
+    };
   }
 
   //Returns the records and total from the server
@@ -20,65 +20,66 @@ class Records extends Component {
         .post("/patient/recordslist", {
           offset: this.state.offset,
         })
-        .then(res => {
-          resolve(res)
+        .then((res) => {
+          resolve(res);
         })
-        .catch(err => {
-          reject(err)
-        })
-    })
-  }
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  };
 
   componentDidMount = () => {
-    this.getRecords().then(res => {
-      const { records, total } = res.data.response
+    this.getRecords().then((res) => {
+      const { records, total } = res.data.response;
+      console.log(res.data.response);
       this.setState({
         data: records.slice(),
         total: total["count"],
-      })
-    })
-  }
+      });
+    });
+  };
 
   setRecords = () => {
-    this.getRecords().then(res => {
-      const { records, total } = res.data.response
+    this.getRecords().then((res) => {
+      const { records, total } = res.data.response;
       this.setState({
         data: records.slice(),
         total: total["count"],
-      })
-    })
-  }
+      });
+    });
+  };
 
-  ClickHandle = e => {
+  ClickHandle = (e) => {
     if (e.target.id === "back" && this.state.offset !== 0) {
-      const newOffset = this.state.offset - this.state.limit
+      const newOffset = this.state.offset - this.state.limit;
       this.setState({ offset: newOffset }, () => {
-        this.setRecords()
-      })
+        this.setRecords();
+      });
     } else if (
       e.target.id === "next" &&
       this.state.offset + this.state.limit < this.state.total
     ) {
-      const newOffset = this.state.offset + this.state.limit
+      const newOffset = this.state.offset + this.state.limit;
       this.setState({ offset: newOffset }, () => {
-        this.setRecords()
-      })
+        this.setRecords();
+      });
     } else {
       //So that data is not fetch again in case of no change
-      return
+      return;
     }
-  }
+  };
   render() {
     const ContainerStyle = {
       width: "75%",
       marginTop: "7%",
       height: "10%",
-    }
+    };
     const BtnStyle = {
       padding: "2% 10%",
       fontSize: "16px",
       marginLeft: "30%",
-    }
+    };
     const BtnStyle1 = {
       padding: "0.5% 0.5%",
       fontSize: "500%",
@@ -87,7 +88,7 @@ class Records extends Component {
       color: "#2d8fd5",
       fontStyle: "italic",
       marginLeft: "30%",
-    }
+    };
     const BtnStyle2 = {
       padding: "0.5% 0.5%",
       fontSize: "500%",
@@ -97,8 +98,8 @@ class Records extends Component {
       color: "#2d8fd5",
       fontStyle: "italic",
       marginLeft: "28%",
-    }
-    const { data } = this.state
+    };
+    const { data } = this.state;
     return (
       <div className="container-fluid" style={ContainerStyle}>
         <table className="table table-hover">
@@ -110,11 +111,11 @@ class Records extends Component {
             <tr>
               <th>Record #</th>
               <th>Date(DD/MM/YYYY)</th>
-              <th>Doctor</th>
+              <th>Doctor Name</th>
               <th></th>
             </tr>
           </thead>
-          {data.map(tuple => (
+          {data.map((tuple) => (
             <tbody key={tuple.id} className="table-light">
               <tr>
                 <td>{tuple.id}</td>
@@ -134,7 +135,7 @@ class Records extends Component {
                       className="btn btn-outline-primary"
                       style={BtnStyle}
                     >
-                      View
+                      view
                     </button>
                   </NavLink>
                 </td>
@@ -154,8 +155,8 @@ class Records extends Component {
           </button>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default Records
+export default Records;
