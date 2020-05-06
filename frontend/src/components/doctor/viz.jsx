@@ -1,69 +1,106 @@
-import React, { Component } from "react"
-import axios from "axios"
-import VizDisplay from "./viz-display"
+import React, { Component } from "./node_modules/react"
+import axios from "./node_modules/axios"
+import "../css/viz-display.css"
+import { Bar } from "./node_modules/react-chartjs-2"
 
 class Viz extends Component {
-	state = { DiseaseData: [] }
-	componentDidMount() {
-		let DiseaseCount = {}
-		const Data = [
-			{
-				id: "A",
-				disease: "sars",
+	constructor(props) {
+		super(props)
+		this.state = {
+			chartData: {
+				labels: ["a", "b", "c", "d"],
+				datasets: [
+					{
+						label: "Count",
+						data: [1, 2, 3, 4],
+						backgroundColor: ["rgba(51,51,255,0.8)"],
+						borderWidth: 4,
+					},
+				],
 			},
-			{
-				id: "B",
-				disease: "mers",
-			},
-			{
-				id: "C",
-				disease: "covid19",
-			},
-			{
-				id: "D",
-				disease: "h1n1",
-			},
-			{
-				id: "D",
-				disease: "h1n1",
-			},
-			{
-				id: "D",
-				disease: "covid19",
-			},
-			{
-				id: "D",
-				disease: "covid19",
-			},
-		]
-		let temp = []
-		/*axios.get("https://jsonplaceholder.typicode.com/posts/").then(dummy => {
-			Data = dummy.data
-        })*/
-		const DistinctDiseases = [...new Set(Data.map(i => i.disease))]
-		DistinctDiseases.forEach(element => {
-			const cases = Data.filter(item => item.disease === element)
-			DiseaseCount[element] = cases.length
-		})
-		let DiseaseKeys = Object.keys(DiseaseCount)
-		for (const key of DiseaseKeys) {
-			temp = [
-				...temp,
-				{
-					disease: key,
-					cases: DiseaseCount[key],
-				},
-			]
+			loading: true,
 		}
-		this.setState({ DiseaseData: temp })
-		console.log(this.state.DiseaseData)
 	}
+
+	componentDidMount() {
+		axios.get("/doctor/visualization").then(data => {
+			const diseases = {}
+			data.data.diseases.forEach(x => {
+				diseases[x.disease] = parseInt(x.count)
+			})
+			const key = Object.keys(diseases)
+			const values = Object.values(diseases)
+			const color = key.map(x => {
+				return "rgba(51,51,255,0.8)"
+			})
+
+			const chart = {
+				labels: key,
+				datasets: [
+					{
+						label: "Count",
+						data: values,
+						backgroundColor: color,
+					},
+				],
+			}
+
+			this.setState({
+				chartData: chart,
+				loading: false,
+			})
+		})
+	}
+
 	render() {
-		return (
-			<div>
-				<VizDisplay data={this.state.DiseaseData} />
-			</div>
-		)
+		if (this.state.loading) {
+			return null
+		} else {
+			return (
+				<div className="flex-container FlexStyle">
+					<Bar
+						data={this.state.chartData}
+						options={{
+							title: {
+								display: true,
+								text: "Top 5 disease cases of past week",
+								fontSize: 18,
+							},
+							legend: {
+								display: true,
+								position: "right",
+							},
+							responsive: true,
+							scales: {
+								yAxes: [
+									{
+										ticks: {
+											autoSkip: true,
+											beginAtZero: true,
+										},
+										scaleLabel: {
+											display: true,
+											labelString: "Number of cases",
+										},
+									},
+								],
+								xAxes: [
+									{
+										gridLines: {
+											display: false,
+										},
+										scaleLabel: {
+											display: true,
+											labelString: "Disease",
+										},
+									},
+								],
+							},
+						}}
+					/>
+				</div>
+			)
+		}
 	}
 }
 
