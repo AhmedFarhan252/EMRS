@@ -38,15 +38,15 @@ exports.googleRedirect = function (req, res) {
   if (role === "patient") {
     verifyRegistration(req, res).then((isRegistered) => {
       if (isRegistered) {
-        res.redirect("http://localhost:3000/patient/profile");
+        res.redirect("http://localhost:3000/p/profile");
       } else {
         res.redirect("http://localhost:3000/newprofile");
       }
     });
   } else if (role === "doctor") {
-    res.redirect("http://localhost:3000/doctor");
+    res.redirect("http://localhost:3000/d/profile");
   } else if (role === "admin") {
-    res.redirect("http://localhost:3000/admin");
+    res.redirect("http://localhost:3000/a");
   } else {
     console.log("ERROR: UNKNOWN ROLE TYPE");
     res.redirect("http://localhost:3000");
@@ -60,15 +60,15 @@ exports.facebookRedirect = function (req, res) {
   if (role === "patient") {
     verifyRegistration(req, res).then((isRegistered) => {
       if (isRegistered) {
-        res.redirect("http://localhost:3000/patient/profile");
+        res.redirect("http://localhost:3000/p/profile");
       } else {
         res.redirect("http://localhost:3000/newprofile");
       }
     });
   } else if (role === "doctor") {
-    res.redirect("http://localhost:3000/doctor");
+    res.redirect("http://localhost:3000/d/profile");
   } else if (role === "admin") {
-    res.redirect("http://localhost:3000/admin");
+    res.redirect("http://localhost:3000/a");
   } else {
     console.log("ERROR: UNKNOWN ROLE TYPE");
     res.redirect("http://localhost:3000");
@@ -111,5 +111,30 @@ exports.authPatient = function (req, res) {
         res.json(ret);
       }
     });
+  }
+};
+
+//Checks if person accessing doctor route is authenticated as doctor
+exports.authDoctor = function (req, res) {
+  //Check if session is present
+  if (!req.user) {
+    const ret = {
+      hasSession: false,
+    };
+    res.json(ret);
+    return;
+  }
+
+  //Check if the user is a doctor
+  if (req.user.role !== "doctor") {
+    const ret = {
+      hasSession: false,
+    };
+    res.json(ret);
+  } else {
+    const ret = {
+      hasSession: true,
+    };
+    res.json(ret);
   }
 };

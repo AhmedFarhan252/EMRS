@@ -1,5 +1,31 @@
 const db = require("../db/dbConnector");
 
+//Adds the table id from the patient table into request
+exports.addTableId = function (req, res, next) {
+  const { id, role } = req.user;
+  let tid = -1;
+  if (role === "patient") {
+    db.oneOrNone(
+      "select patient.id from patient,login where login.id=$1 and login.email = patient.email;",
+      [id]
+    ).then((data) => {
+      if (data) {
+        tid = data.id;
+
+        const user_data = {
+          id: id,
+          role: "patient",
+          tid: tid,
+        };
+        req.user = user_data;
+        next();
+      } else {
+        next();
+      }
+    });
+  }
+};
+
 // Inserts new patient account information into database.
 exports.newAccount = function (req, res) {
   const { fname, lname, dob, num, cnic, gender, bloodGroup } = req.body;
@@ -86,8 +112,7 @@ exports.getRecords = function (req, res) {
 exports.singleRecord = function (req, res) {
   const id = req.user.tid;
   const { rid } = req.body;
-  console.log(req.body);
-  console.log(rid);
+
   var result = {};
   db.task((t) => {
     return t

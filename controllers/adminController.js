@@ -56,7 +56,7 @@ exports.delAccount = function (req, res) {
 };
 
 exports.getDisease = function (req, res) {
-  db.any("SELECT enum_range(NULL::disease);")
+  db.any("SELECT unnest(enum_range(NULL::disease));")
     .then((data) => {
       res.json({
         status: "ok",
