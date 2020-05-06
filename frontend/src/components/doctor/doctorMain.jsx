@@ -15,30 +15,32 @@ import Viz from "./viz";
 class Doctor extends Component {
   render() {
     return (
-      <div className={"row no-gutters"}>
-        <div className={"col-sm-2 no-gutters"}>
-          <div className={"leftside"}>
-            <NavBar />
-          </div>
-        </div>
-        <div className={"col-sm-10 no-gutters"}>
-          <div className={"rightside"}>
-            <UpperBar />
-            <Switch>
-              <Route path="/d/dis" component={DisList} />
-
-              <Route path="/d/profile" component={DocProfile} />
-              <Route path="/d/edit-profile" component={DocEdit} />
-              <Route path="/d/add-records" component={Add} />
-              <Route path="/d/records" component={DocRecords} />
-              <Route path="/d/patList" component={PatList} />
-              <Route path="/d/view-record" component={DocView} />
-              <Route path="/d/viz" component={Viz} />
-            </Switch>
-          </div>
-        </div>
-      </div>
-    );
+			<div className={"row no-gutters"}>
+				<div className={"col-sm-2 no-gutters"}>
+					<div className={"leftside"}>
+						<NavBar />
+					</div>
+				</div>
+				<div className={"col-sm-10 no-gutters"}>
+					<div
+						className={"rightside"}
+						style={{ backgroundColor: "#eceeef" }}
+					>
+						<UpperBar />
+						<Switch>
+							<Route path="/d/dis" component={DisList} />
+							<Route path="/d/profile" component={DocProfile} />
+							<Route path="/d/edit-profile" component={DocEdit} />
+							<Route path="/d/add-records" component={Add} />
+							<Route path="/d/records" component={DocRecords} />
+							<Route path="/d/patList" component={PatList} />
+							<Route path="/d/view-record" component={DocView} />
+							<Route path="/d/viz" component={Viz} />
+						</Switch>
+					</div>
+				</div>
+			</div>
+		)
   }
 }
 

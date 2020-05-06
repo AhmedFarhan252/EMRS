@@ -8,24 +8,24 @@ const NavBar = () => (
 		<div className={"logostyle"}>
 			<img src={logo} alt="EMR" />
 		</div>
-		<ul>
+		<ul style={{ listStyleType: "none" }}>
 			<li>
-				<NavLink to="/d/profile">
+				<NavLink to="/d/profile" style={{ fontSize: "200%" }}>
 					<i className="material-icons">account_box</i>Profile
 				</NavLink>
 			</li>
 			<li>
-				<NavLink to="/d/records">
-					<i className="material-icons">account_box</i>Records
+				<NavLink to="/d/records" style={{ fontSize: "200%" }}>
+					<i className="material-icons">table_chart</i>Records
 				</NavLink>
 			</li>
 			<li>
-				<NavLink to="/d/add-records">
+				<NavLink to="/d/add-records" style={{ fontSize: "200%" }}>
 					<i className="material-icons">library_add</i>Add Record
 				</NavLink>
 			</li>
 			<li>
-				<NavLink to="/d/viz">
+				<NavLink to="/d/viz" style={{ fontSize: "200%" }}>
 					<i className="material-icons">insert_chart</i>Visualizations
 				</NavLink>
 			</li>
