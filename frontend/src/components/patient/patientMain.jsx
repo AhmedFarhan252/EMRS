@@ -18,7 +18,10 @@ class Patient extends Component {
 					</div>
 				</div>
 				<div className={"col-sm-10 no-gutters"}>
-					<div className={"rightside"}>
+					<div
+						className={"rightside"}
+						style={{ backgroundColor: "#eceeef" }}
+					>
 						<UpperBar />
 						<Switch>
 							<Route path="/p/profile" component={Profile} />

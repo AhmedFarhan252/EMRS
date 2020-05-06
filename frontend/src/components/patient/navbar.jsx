@@ -8,15 +8,15 @@ const NavBar = () => (
 		<div className={"logostyle"}>
 			<img src={logo} alt="EMR" />
 		</div>
-		<ul>
+		<ul style={{ listStyleType: "none" }}>
 			<li>
-				<NavLink to="/p/profile">
-					<i className="material-icons">account_box</i>Profile
+				<NavLink to="/p/profile" style={{ fontSize: "200%" }}>
+					<i className="material-icons">account_box</i> Profile
 				</NavLink>
 			</li>
 			<li>
-				<NavLink to="/p/records">
-					<i className="material-icons">account_box</i>Records
+				<NavLink to="/p/records" style={{ fontSize: "200%" }}>
+					<i className="material-icons">table_chart</i> Records
 				</NavLink>
 			</li>
 		</ul>
