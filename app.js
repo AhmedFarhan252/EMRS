@@ -6,17 +6,9 @@ var logger = require("morgan");
 var passportSetup = require("./config/passportSetup");
 var cookieSession = require("cookie-session");
 var passport = require("passport");
-var compression = require("compression");
-var helmet = require("helmet");
 require("dotenv").config();
 
 var app = express();
-
-//For defense against well known web vulnerabilities
-app.use(helmet());
-
-//For compression
-app.use(compression());
 
 //Add cookie sessions of 1 hour
 app.use(
