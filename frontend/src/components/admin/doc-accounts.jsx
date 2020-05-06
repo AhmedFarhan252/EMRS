@@ -5,54 +5,111 @@ import axios from "axios";
 class Accounts extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { accounts: [], start: 0 };
-    this.number_of_elements = 5;
+    this.state = {
+      accounts: [],
+      offset: 0,
+      limit: 5,
+      total: 0,
+    };
   }
+
+  //Returns the doctors and total from the server
+  getDoctors = () => {
+    return new Promise((resolve, reject) => {
+      axios
+        .post("/admin/accounts-list", {
+          offset: this.state.offset,
+        })
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  };
 
   componentDidMount() {
-    axios.get("https://jsonplaceholder.typicode.com/posts/").then((dummy) => {
+    this.getDoctors().then((res) => {
+      console.log(res.data.response);
+      const { records, total } = res.data.response;
       this.setState({
-        accounts: dummy.data.map(x => ({ name: x.id, email: x.userId }))//.slice(0, 16)
+        accounts: records.slice(),
+        total: total["count"],
       });
-    })
+    });
   }
+
+  setDoctor = () => {
+    this.getDoctors().then((res) => {
+      const { records, total } = res.data.response;
+      this.setState({
+        accounts: records.slice(),
+        total: total["count"],
+      });
+    });
+  };
+
+  deleteDoctor = (e) => {
+    console.log(e.target.id);
+    e.preventDefault();
+
+    axios
+      .post("/admin/delaccount", {
+        email: e.target.id,
+      })
+      .then((res) => {
+        this.setDoctor();
+      });
+  };
 
   nextHandle = () => {
-    if (this.state.start + this.number_of_elements < this.state.accounts.length - this.number_of_elements) {
-      this.setState((state) => ({
-        start: state.start + this.number_of_elements
-      }));
+    if (this.state.offset + this.state.limit < this.state.total) {
+      this.setState(
+        {
+          offset: this.state.offset + this.state.limit,
+        },
+        () => {
+          this.setDoctor();
+        }
+      );
+    } else {
+      return;
     }
-    else {
-      this.setState((state) => ({
-        start: state.accounts.length - this.number_of_elements
-      }));
-    }
-  }
+  };
 
   prevHandle = () => {
-    if (this.state.start - this.number_of_elements >= 0) {
-      this.setState((state) => ({
-        start: state.start - this.number_of_elements
-      }));
+    if (this.state.offset !== 0) {
+      this.setState(
+        {
+          offset: this.state.offset - this.state.limit,
+        },
+        () => {
+          this.setDoctor();
+        }
+      );
+    } else {
+      return;
     }
-    else {
-      this.setState(() => ({
-        start: 0
-      }));
-    }
-  }
+  };
 
   render() {
     const ContainerStyle = {
       width: "75%",
       marginTop: "7%",
-    }
+    };
     const BtnStyle = {
       padding: "2% 10%",
       fontSize: "16px",
       marginLeft: "30%",
-    }
+    };
+    const AddBtnStyle = {
+      padding: "2% 10%",
+      width: "100%",
+      height: "10%",
+      fontSize: "16px",
+      marginLeft: "20%",
+    };
     // const BtnStyleAdd = {
     //   padding: "2% 10%",
     //   fontSize: "16px",
@@ -67,7 +124,7 @@ class Accounts extends React.Component {
       border: "solid #eceeef",
       color: "#2d8fd5",
       fontStyle: "italic",
-    }
+    };
     // const BtnStyle2 = {
     //   padding: "3px 60px",
     //   fontSize: "40px",
@@ -93,7 +150,9 @@ class Accounts extends React.Component {
           <div className="col">
             <table className="table table-hover">
               <caption>
-                Showing {this.state.start + 1} - {this.state.start + this.number_of_elements} of {this.state.accounts.length}
+                Showing {this.state.offset + 1} -{" "}
+                {this.state.offset + this.state.accounts.length} of{" "}
+                {this.state.total}
               </caption>
               <thead className="bg-primary table-dark">
                 <tr>
@@ -103,27 +162,23 @@ class Accounts extends React.Component {
                 </tr>
               </thead>
               <tbody className="table-light">
-                {
-                  this.state.accounts.slice(
-                    this.state.start, this.state.start + this.number_of_elements
-                  ).map(user => (
-                    <tr key={user.name}>
-                      <td>{user.name}</td>
-                      <td>{user.email}</td>
-                      <td>
-                        <Link to="#">
-                          <button
-                            type="button"
-                            className="btn btn-outline-primary"
-                            style={BtnStyle}
-                          >
-                            Drop
-                          </button>
-                        </Link>
-                      </td>
-                    </tr>
-                  ))
-                }
+                {this.state.accounts.map((user) => (
+                  <tr key={user.id}>
+                    <td>{user.doc_fname + " " + user.doc_lname}</td>
+                    <td>{user.email}</td>
+                    <td>
+                      <button
+                        type="button"
+                        id={user.email}
+                        className="btn btn-outline-danger"
+                        style={BtnStyle}
+                        onClick={this.deleteDoctor}
+                      >
+                        Drop
+                      </button>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
             <div className="row">
@@ -139,12 +194,12 @@ class Accounts extends React.Component {
               </div>
             </div>
           </div>
-          <div className="col-1">
-            <Link to='/a/add-doc-account'>
+          <div className="col-2">
+            <Link to="/a/add-doc-account" style={{ width: "100%" }}>
               <button
                 type="button"
                 className="btn btn-outline-primary"
-                style={BtnStyle}
+                style={AddBtnStyle}
               >
                 Add
               </button>
@@ -161,9 +216,8 @@ class Accounts extends React.Component {
             </button></td>
           </tr>
         </tbody></table> */}
-
       </div>
-    )
+    );
   }
 }
 

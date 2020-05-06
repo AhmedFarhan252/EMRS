@@ -4,53 +4,112 @@ import axios from "axios";
 class ListDiseases extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { diseases: [], start: 0 };
-    this.number_of_elements = 5;
+    this.state = {
+      diseases: [],
+      offset: 0,
+      limit: 5,
+      total: 0,
+      name: "",
+    };
   }
+
+  //Returns the list of diseases and the total
+  getDiseases = () => {
+    return new Promise((resolve, reject) => {
+      axios
+        .post("/admin/disease-list", {
+          offset: this.state.offset,
+        })
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  };
 
   componentDidMount() {
-    axios.get("https://jsonplaceholder.typicode.com/posts/").then((dummy) => {
-      this.setState({
-        diseases: dummy.data.map(x => ({ id: x.id, name: x.title.slice(0, 20) }))//.slice(0, 16)
+    this.getDiseases().then((res) => {
+      console.log(this.state);
+      const { total, records } = res.data.response;
+      const data = records.map((d, idx) => {
+        return { name: d.disease, id: idx + this.state.offset + 1 };
       });
-    })
+
+      this.setState({
+        diseases: data.slice(),
+        total: total["count"],
+      });
+    });
   }
+
+  setDisease = () => {
+    this.getDiseases().then((res) => {
+      const { total, records } = res.data.response;
+      const data = records.map((d, idx) => {
+        return { name: d.disease, id: idx + this.state.offset + 1 };
+      });
+
+      this.setState({
+        diseases: data.slice(),
+        total: total["count"],
+        name: "",
+      });
+    });
+  };
+
+  addDisease = (e) => {
+    e.preventDefault();
+
+    axios
+      .post("/admin/disease", {
+        disease: this.state.name,
+      })
+      .then((res) => {
+        this.setDisease();
+      });
+  };
 
   nextHandle = () => {
-    if (this.state.start + this.number_of_elements < this.state.diseases.length - this.number_of_elements) {
-      this.setState((state) => ({
-        start: state.start + this.number_of_elements
-      }));
+    if (this.state.offset + this.state.limit < this.state.total) {
+      this.setState(
+        {
+          offset: this.state.offset + this.state.limit,
+        },
+        () => {
+          this.setDisease();
+        }
+      );
+    } else {
+      return;
     }
-    else {
-      this.setState((state) => ({
-        start: state.diseases.length - this.number_of_elements
-      }));
-    }
-  }
+  };
 
   prevHandle = () => {
-    if (this.state.start - this.number_of_elements >= 0) {
-      this.setState((state) => ({
-        start: state.start - this.number_of_elements
-      }));
+    if (this.state.offset !== 0) {
+      this.setState(
+        {
+          offset: this.state.offset - this.state.limit,
+        },
+        () => {
+          this.setDisease();
+        }
+      );
+    } else {
+      return;
     }
-    else {
-      this.setState(() => ({
-        start: 0
-      }));
-    }
-  }
+  };
 
-  handleClick = (e) => {
-    // new disease name sent to backend
-  }
+  InputHandle = (e) => {
+    this.setState({ [e.target.id]: e.target.value });
+  };
 
   render() {
     const ContainerStyle = {
       width: "75%",
       marginTop: "7%",
-    }
+    };
     const BtnStyle1 = {
       padding: "3px 60px",
       fontSize: "40px",
@@ -58,7 +117,7 @@ class ListDiseases extends React.Component {
       border: "solid #eceeef",
       color: "#2d8fd5",
       fontStyle: "italic",
-    }
+    };
 
     return (
       <div className="container-fluid" style={ContainerStyle}>
@@ -68,12 +127,11 @@ class ListDiseases extends React.Component {
               Disease Name:
               <input
                 type="text"
-                name="id"
-              // onChange={e => this.handleChange(e)}
+                id="name"
+                value={this.state.name}
+                onChange={this.InputHandle}
               />
-              <button onClick={e => this.handleClick(e)}>
-                Add
-              </button>
+              <button onClick={this.addDisease}>Add</button>
             </label>
           </form>
         </div>
@@ -81,7 +139,9 @@ class ListDiseases extends React.Component {
         <div className="row">
           <table className="table table-hover">
             <caption>
-              Showing {this.state.start + 1} - {this.state.start + this.number_of_elements} of {this.state.diseases.length}
+              Showing {this.state.offset + 1} -{" "}
+              {this.state.offset + this.state.diseases.length} of{" "}
+              {this.state.total}
             </caption>
             <thead className="bg-primary table-dark">
               <tr>
@@ -90,33 +150,29 @@ class ListDiseases extends React.Component {
               </tr>
             </thead>
             <tbody className="table-light">
-              {
-                this.state.diseases.slice(
-                  this.state.start, this.state.start + this.number_of_elements
-                ).map(disease => (
-                  <tr key={disease.id}>
-                    <td>{disease.id}</td>
-                    <td>{disease.name}</td>
-                  </tr>
-                ))
-              }
+              {this.state.diseases.map((disease) => (
+                <tr key={disease.id}>
+                  <td>{disease.id}</td>
+                  <td>{disease.name}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
           <div className="row">
             <div className="col">
               <button style={BtnStyle1} onClick={this.prevHandle}>
                 &lt;
-                </button>
+              </button>
             </div>
             <div className="col">
               <button style={BtnStyle1} onClick={this.nextHandle}>
                 &gt;
-                </button>
+              </button>
             </div>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 

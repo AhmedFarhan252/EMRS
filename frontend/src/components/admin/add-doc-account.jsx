@@ -22,20 +22,22 @@ class AddDocAccount extends React.Component {
 
   SubmissionHandle = (e) => {
     e.preventDefault();
-
+    console.log("e");
     const { fname, lname, email, contact, cnic } = this.state;
 
-    axios.post("/patient/new", {
-      fname: fname,
-      lname: lname,
-      email: email,
-      num: contact,
-      cnic: cnic,
-    }).then(() => {
-      this.setState({
-        redirect: true,
+    axios
+      .post("/admin/account", {
+        fname: fname,
+        lname: lname,
+        email: email,
+        num: contact,
+        cnic: cnic,
+      })
+      .then(() => {
+        this.setState({
+          redirect: true,
+        });
       });
-    });
   };
 
   render() {
@@ -101,7 +103,7 @@ class AddDocAccount extends React.Component {
     return (
       <div className="container-fluid" style={MainContainer}>
         {/* <div> */}
-        <header style={HeaderStyle} >
+        <header style={HeaderStyle}>
           <img src={logo} alt="EMR" style={ImgStyle} />
         </header>
         <div className="row justify-content-center" style={inputForm}>
@@ -181,9 +183,7 @@ class AddDocAccount extends React.Component {
               className="row justify-content-around"
               style={{ margin: "auto" }}
             >
-              <div
-                className="col-4"
-              >
+              <div className="col-4">
                 <input
                   type="submit"
                   value="Create"
@@ -191,9 +191,7 @@ class AddDocAccount extends React.Component {
                   className={"ButtonStyle"}
                 />
               </div>
-              <div
-                className="col-4"
-              >
+              <div className="col-4">
                 <Link to="/a/doc-accounts">
                   <input type="button" value="Cancel" className="ButtonStyle" />
                 </Link>
@@ -202,7 +200,7 @@ class AddDocAccount extends React.Component {
           </form>
         </div>
       </div>
-    )
+    );
   }
 }
 
