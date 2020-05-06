@@ -11,36 +11,40 @@ import DocView from "./view-record.jsx";
 import Add from "./add-records.jsx";
 import DisList from "./DisList.jsx";
 import Viz from "./viz";
+import Pdf from "./pdf";
 
 class Doctor extends Component {
   render() {
     return (
-			<div className={"row no-gutters"}>
-				<div className={"col-sm-2 no-gutters"}>
-					<div className={"leftside"}>
-						<NavBar />
-					</div>
-				</div>
-				<div className={"col-sm-10 no-gutters"}>
-					<div
-						className={"rightside"}
-						style={{ backgroundColor: "#eceeef" }}
-					>
-						<UpperBar />
-						<Switch>
-							<Route path="/d/dis" component={DisList} />
-							<Route path="/d/profile" component={DocProfile} />
-							<Route path="/d/edit-profile" component={DocEdit} />
-							<Route path="/d/add-records" component={Add} />
-							<Route path="/d/records" component={DocRecords} />
-							<Route path="/d/patList" component={PatList} />
-							<Route path="/d/view-record" component={DocView} />
-							<Route path="/d/viz" component={Viz} />
-						</Switch>
-					</div>
-				</div>
-			</div>
-		)
+      <Switch>
+        <Route path="/d/pdf" component={Pdf} />
+        <React.Fragment>
+          <div className={"row no-gutters"}>
+            <div className={"col-sm-2 no-gutters"}>
+              <div className={"leftside"}>
+                <NavBar />
+              </div>
+            </div>
+            <div className={"col-sm-10 no-gutters"}>
+              <div
+                className={"rightside"}
+                style={{ backgroundColor: "#eceeef" }}
+              >
+                <UpperBar />
+                <Route path="/d/dis" component={DisList} />
+                <Route path="/d/profile" component={DocProfile} />
+                <Route path="/d/edit-profile" component={DocEdit} />
+                <Route path="/d/add-records" component={Add} />
+                <Route path="/d/records" component={DocRecords} />
+                <Route path="/d/patList" component={PatList} />
+                <Route path="/d/view-record" component={DocView} />
+                <Route path="/d/viz" component={Viz} />
+              </div>
+            </div>
+          </div>
+        </React.Fragment>
+      </Switch>
+    );
   }
 }
 

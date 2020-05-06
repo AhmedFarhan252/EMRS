@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import "../css/records-styles.css";
+import pdfIcon from "../../img/pdfIcon.svg";
 
 class DocView extends Component {
   constructor(props) {
@@ -102,8 +103,8 @@ class DocView extends Component {
     };
     const FlexStyle1 = {
       display: "flex",
+      justifyContent: "space-around",
       marginTop: "3%",
-      marginLeft: "8%",
     };
     const FlexStyle2 = {
       display: "flex",
@@ -137,6 +138,18 @@ class DocView extends Component {
       padding: "1rem",
       resize: "none",
     };
+    const pdfBtn = {
+      width: "100%",
+      height: "100%",
+      backgroundColor: "Transparent",
+      textAlign: "center",
+      textDecoration: "none",
+      border: "none",
+    };
+    const linkStyle = {
+      width: "5%",
+      height: "5%",
+    };
 
     const {
       id,
@@ -153,13 +166,22 @@ class DocView extends Component {
 
     return (
       <div>
-        <div className="flex-container" style={FlexStyle1}>
-          <h1 className="col" style={HeadingStyle1}>
-            Medical Record #{id}
-          </h1>
-          <h1 className="col" style={HeadingStyle2}>
-            Date : {date}
-          </h1>
+        <div style={FlexStyle1}>
+          <h1 style={HeadingStyle1}>Medical Record #{id}</h1>
+          <h1 style={HeadingStyle2}>Date : {date}</h1>
+          <Link
+            to={{
+              pathname: "pdf",
+              state: {
+                data: this.state,
+              },
+            }}
+            style={linkStyle}
+          >
+            <button style={pdfBtn}>
+              <img src={pdfIcon} alt="pdf Icon" />
+            </button>
+          </Link>
         </div>
         <div className="flex-container" style={FlexStyle2}>
           <div className="col-2" style={InfoStyle}>
