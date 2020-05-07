@@ -114,6 +114,8 @@ class AddDocAccount extends React.Component {
                 </label>
                 <input
                   type="text"
+                  pattern="[A-Z a-z.]{1,20}"
+                  title="Can only contain alphabets and must be between 1-20 characters"
                   name="fname"
                   value={this.state.fname}
                   style={InputStyle}
@@ -139,6 +141,8 @@ class AddDocAccount extends React.Component {
                 </label>
                 <input
                   type="text"
+                  pattern="[A-Z a-z.]{1,20}"
+                  title="Can only contain alphabets and must be between 1-20 characters"
                   name="lname"
                   value={this.state.lname}
                   style={InputStyle}
@@ -149,7 +153,9 @@ class AddDocAccount extends React.Component {
                   Contact No.
                 </label>
                 <input
-                  type="number"
+                  type="text"
+                  pattern="[0-9]{11}"
+                  title="Can only consist of eleven integers"
                   name="contact"
                   value={this.state.contact}
                   style={InputStyle}
@@ -166,7 +172,9 @@ class AddDocAccount extends React.Component {
                 CNIC
               </label>
               <input
-                type="number"
+                type="text"
+                pattern="[0-9]{13}"
+                title="Can only contain of thirteen integers"
                 name="cnic"
                 value={this.state.value}
                 style={InputStyle}

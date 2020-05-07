@@ -113,7 +113,7 @@ class DocEdit extends Component {
             </label>
             <input
               pattern="[0-9]{11}"
-              title="Can only contain of eleven integers"
+              title="Can only consist of eleven integers"
               type="text"
               id="num"
               value={this.state.num}
