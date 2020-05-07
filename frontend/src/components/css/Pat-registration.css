@@ -1,0 +1,31 @@
+input[type="text"]:focus {
+  border: 2px solid hsl(205, 67%, 51%);
+}
+::placeholder {
+  color: rgba(8, 163, 253, 0.993);
+  opacity: 0.5;
+}
+.ButtonStyle {
+  margin-top: 10%;
+  margin-left: 15%;
+  padding: 3% 25%;
+  font-size: 1.5em;
+  background-color: #ffffff;
+  border: solid #ffffff;
+  border-radius: 10px;
+  transition-duration: 0.4s;
+  font-weight: bold;
+  color: #0aa4fd;
+}
+.ButtonStyle:hover {
+  background-color: #0aa4fd;
+  color: #ffffff;
+}
+.BtnStyle:hover {
+  background-color: #d2202f;
+  color: white;
+}
+.ArrowStyle {
+  position: relative;
+  color: #006fbe;
+}
