@@ -3,18 +3,13 @@ const express = require("express");
 const router = express.Router();
 const admin_controller = require("../controllers/adminController");
 
-// Home page route
-router.get("/", (req, res) => {
-  res.send("Admin home page");
-});
-
 // Account management route
-router.get("/accounts", (req, res) => {
+router.post("/accounts-list", (req, res) => {
   admin_controller.getAccount(req, res);
 });
 
 // new account route
-router.post("/accounts", (req, res) => {
+router.post("/account", (req, res) => {
   admin_controller.newAccount(req, res);
 });
 
@@ -24,7 +19,7 @@ router.post("/delaccount", (req, res) => {
 });
 
 // Disease route
-router.get("/disease", (req, res) => {
+router.post("/disease-list", (req, res) => {
   admin_controller.getDisease(req, res);
 });
 

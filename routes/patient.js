@@ -3,9 +3,9 @@ const express = require("express");
 const router = express.Router();
 const patientController = require("../controllers/patientController");
 
-// Home page route
-router.get("/", (req, res) => {
-  res.send("Patient home page");
+//Add table id from patient table to req.
+router.use((req, res, next) => {
+  patientController.addTableId(req, res, next);
 });
 
 // New account route
@@ -14,7 +14,7 @@ router.post("/new", (req, res) => {
 });
 
 // Profile page route
-router.get("/profile/:id", (req, res) => {
+router.get("/profile", (req, res) => {
   patientController.getProfile(req, res);
 });
 
@@ -23,14 +23,14 @@ router.post("/profile", (req, res) => {
   patientController.updateProfile(req, res);
 });
 
-// Record page route
-router.get("/records/:id", (req, res) => {
-  patientController.getRecords(req, res);
-});
-
 // Single record route
 router.post("/records", (req, res) => {
   patientController.singleRecord(req, res);
+});
+
+// Record page route
+router.post("/recordslist", (req, res) => {
+  patientController.getRecords(req, res);
 });
 
 // Appointments route

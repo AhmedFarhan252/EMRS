@@ -2,6 +2,7 @@
 const pgp = require("pg-promise")();
 var types = pgp.pg.types;
 require("dotenv").config();
+
 var moment = require("moment");
 var parseDate = function parseDate(val) {
   return val === null ? null : moment(val).format("YYYY-MM-DD");

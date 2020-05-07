@@ -3,13 +3,13 @@ const express = require("express");
 const router = express.Router();
 const doctorController = require("../controllers/doctorController");
 
-// Home page route
-router.get("/", (req, res) => {
-  res.send("Doctor home page");
+//Add table id from doctor table to req.
+router.use((req, res, next) => {
+  doctorController.addTableId(req, res, next);
 });
 
 // Profile page route
-router.get("/profile/:id", (req, res) => {
+router.get("/profile", (req, res) => {
   doctorController.getProfile(req, res);
 });
 
@@ -18,14 +18,14 @@ router.post("/profile", (req, res) => {
   doctorController.editProfile(req, res);
 });
 
-// Doctor's Record page route
-router.get("/records/:id", (req, res) => {
-  doctorController.getRecords(req, res);
-});
-
 // Single record route
 router.post("/records", (req, res) => {
   doctorController.singleRecord(req, res);
+});
+
+// Doctor's Record page route
+router.post("/recordsList", (req, res) => {
+  doctorController.getRecords(req, res);
 });
 
 // Record download route
@@ -34,12 +34,12 @@ router.post("/recorddownload", (req, res) => {
 });
 
 // New Record page route
-router.get("/newrecord", (req, res) => {
+router.post("/patientslist", (req, res) => {
   doctorController.getPatients(req, res);
 });
 
 // Get Record info route
-router.post("/RecordInfo", (req, res) => {
+router.post("/recordinfo", (req, res) => {
   doctorController.getRecordInfo(req, res);
 });
 
