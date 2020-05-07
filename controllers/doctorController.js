@@ -6,7 +6,7 @@ exports.addTableId = function (req, res, next) {
   let tid = -1;
   if (role === "doctor") {
     db.oneOrNone(
-      "select doctor.id from doctor,login where login.id=1 and login.email = doctor.email;",
+      "select doctor.id from doctor,login where login.id=$1 and login.email = doctor.email;",
       [id]
     ).then((data) => {
       if (data) {
