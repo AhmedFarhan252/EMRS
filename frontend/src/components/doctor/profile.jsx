@@ -16,7 +16,7 @@ class DocProfile extends Component {
   }
 
   getID = () => {
-    const req = "/doctor/profile/";
+    const req = "/d/profile/";
     return axios.get(req);
   };
 
