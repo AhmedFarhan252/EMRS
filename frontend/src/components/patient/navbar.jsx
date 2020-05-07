@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import "../css/navbar.css";
 import logo from "../../img/LogoEmr.png";
 
+const iconStyle = { display: "flex", alignItems: "center", fontSize: "1.6vw" };
+
 const NavBar = () => (
   <div className="sidenav">
     <div className={"logostyle"}>
@@ -10,13 +12,19 @@ const NavBar = () => (
     </div>
     <ul style={{ listStyleType: "none" }}>
       <li>
-        <NavLink to="/p/profile" style={{ fontSize: "200%" }}>
-          <i className="material-icons">account_box</i>Profile
+        <NavLink style={iconStyle} to="/p/profile">
+          <i style={{ marginRight: "8%" }} className="material-icons">
+            account_box
+          </i>
+          <div>Profile </div>
         </NavLink>
       </li>
       <li>
-        <NavLink to="/p/records" style={{ fontSize: "200%" }}>
-          <i className="material-icons">table_chart</i>Records
+        <NavLink style={iconStyle} to="/p/records">
+          <i style={{ marginRight: "8%" }} className="material-icons">
+            table_chart
+          </i>
+          Records
         </NavLink>
       </li>
     </ul>

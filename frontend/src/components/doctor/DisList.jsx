@@ -5,10 +5,6 @@ import makeAnimated from "react-select/animated";
 const animated = makeAnimated();
 
 class DisList extends React.Component {
-  componentDidMount = () => {
-    this.props.diseases.map((d) => console.log({ label: d, value: d }));
-  };
-
   handleChange = (selections) => {
     this.props.updateDiseases(selections);
   };

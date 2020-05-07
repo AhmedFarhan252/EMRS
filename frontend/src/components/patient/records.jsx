@@ -32,7 +32,6 @@ class Records extends Component {
   componentDidMount = () => {
     this.getRecords().then((res) => {
       const { records, total } = res.data.response;
-      console.log(res.data.response);
       this.setState({
         data: records.slice(),
         total: total["count"],

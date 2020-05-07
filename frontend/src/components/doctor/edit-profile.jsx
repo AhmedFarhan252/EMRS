@@ -115,7 +115,7 @@ class DocEdit extends Component {
               pattern="[0-9]{11}"
               title="Can only contain of eleven integers"
               type="text"
-              name="num"
+              id="num"
               value={this.state.num}
               style={InputStyle}
               placeholder="Your contact number here"
@@ -128,7 +128,7 @@ class DocEdit extends Component {
               pattern="[A-Z a-z.]{1,20}"
               title="Can only contain alphabets and must be between 1-20 characters"
               type="text"
-              name="fname"
+              id="fname"
               value={this.state.fname}
               style={InputStyle}
               placeholder="Your first name here"
@@ -141,7 +141,7 @@ class DocEdit extends Component {
               pattern="[A-Z a-z.]{1,20}"
               title="Can only contain alphabets and must be between 1-20 characters"
               type="text"
-              name="lname"
+              id="lname"
               value={this.state.lname}
               style={InputStyle}
               placeholder="Your last name here"

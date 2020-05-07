@@ -31,7 +31,6 @@ class Accounts extends React.Component {
 
   componentDidMount() {
     this.getDoctors().then((res) => {
-      console.log(res.data.response);
       const { records, total } = res.data.response;
       this.setState({
         accounts: records.slice(),
@@ -51,7 +50,6 @@ class Accounts extends React.Component {
   };
 
   deleteDoctor = (e) => {
-    console.log(e.target.id);
     e.preventDefault();
 
     axios
@@ -110,42 +108,17 @@ class Accounts extends React.Component {
       fontSize: "16px",
       marginLeft: "20%",
     };
-    // const BtnStyleAdd = {
-    //   padding: "2% 10%",
-    //   fontSize: "16px",
-    //   // marginLeft: "70%",
-    //   marginBottom: "2%",
-    // }
     const BtnStyle1 = {
       padding: "3px 60px",
       fontSize: "40px",
       marginLeft: "30%",
-      // marginBottom: "60%",
       border: "solid #eceeef",
       color: "#2d8fd5",
       fontStyle: "italic",
     };
-    // const BtnStyle2 = {
-    //   padding: "3px 60px",
-    //   fontSize: "40px",
-    //   marginRight: "93%",
-    //   marginBottom: "60%",
-    //   border: "solid #eceeef",
-    //   color: "#2d8fd5",
-    //   fontStyle: "italic",
-    // }
 
     return (
       <div className="container-fluid" style={ContainerStyle}>
-        {/* <Link to='#'>
-          <button
-            type="button"
-            className="btn btn-outline-primary"
-            style={BtnStyleAdd}
-          >
-            Add
-          </button>
-        </Link> */}
         <div className="row">
           <div className="col">
             <table className="table table-hover">
@@ -206,16 +179,6 @@ class Accounts extends React.Component {
             </Link>
           </div>
         </div>
-        {/* <table style={{ width: "100%" }}><tbody>
-          <tr>
-            <td><button style={BtnStyle2} onClick={this.prevHandle}>
-              &lt;
-            </button></td>
-            <td><button style={BtnStyle1} onClick={this.nextHandle}>
-              &gt;
-            </button></td>
-          </tr>
-        </tbody></table> */}
       </div>
     );
   }

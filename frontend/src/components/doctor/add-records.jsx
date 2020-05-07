@@ -157,8 +157,6 @@ class Add extends Component {
       display: "flex",
       justifyContent: "space-around",
       width: "100%",
-      //   marginLeft: "5%",
-      //   marginTop: "6%",
       margin: "6% auto",
     };
     const CardStyle = {

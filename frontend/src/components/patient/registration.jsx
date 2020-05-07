@@ -37,7 +37,6 @@ class Register extends Component {
         bloodGroup: blood,
       })
       .then((res) => {
-        console.log(res);
         this.setState({
           redirect: true,
         });
@@ -152,8 +151,6 @@ class Register extends Component {
                 </label>
                 <input
                   type="date"
-                  //onFocus="(this.type='date')"
-                  //onBlur="(this.type='text')"
                   name="dob"
                   style={InputStyle}
                   value={this.state.dob}

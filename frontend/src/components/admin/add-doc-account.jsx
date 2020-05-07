@@ -22,7 +22,6 @@ class AddDocAccount extends React.Component {
 
   SubmissionHandle = (e) => {
     e.preventDefault();
-    console.log("e");
     const { fname, lname, email, contact, cnic } = this.state;
 
     axios
@@ -46,9 +45,6 @@ class AddDocAccount extends React.Component {
     }
 
     const MainContainer = {
-      // height: "100vh",
-      // backgroundImage:
-      //   "linear-gradient(198deg, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%)",
       marginTop: "5%",
     };
     const TitleStyle = {
@@ -102,7 +98,6 @@ class AddDocAccount extends React.Component {
 
     return (
       <div className="container-fluid" style={MainContainer}>
-        {/* <div> */}
         <header style={HeaderStyle}>
           <img src={logo} alt="EMR" style={ImgStyle} />
         </header>

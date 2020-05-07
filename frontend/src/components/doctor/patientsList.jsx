@@ -31,7 +31,6 @@ class PatList extends Component {
 
   componentDidMount() {
     this.getPatients().then((res) => {
-      console.log(res);
       const { records, total } = res.data.response;
       this.setState({
         data: records.slice(),

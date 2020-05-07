@@ -31,7 +31,6 @@ class ListDiseases extends React.Component {
 
   componentDidMount() {
     this.getDiseases().then((res) => {
-      console.log(this.state);
       const { total, records } = res.data.response;
       const data = records.map((d, idx) => {
         return { name: d.disease, id: idx + this.state.offset + 1 };

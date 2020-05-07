@@ -24,7 +24,6 @@ class DocView extends Component {
 
   getRecord() {
     const id = this.state.id;
-    console.log(id);
     if (id !== -1) {
       axios
         .post("/doctor/records/", {
@@ -45,13 +44,11 @@ class DocView extends Component {
             private_note,
           } = result.data.res.data;
 
-          console.log(result.data.res.data);
           const docName = doc_fname + " " + doc_lname;
           const patName = pat_fname + " " + pat_lname;
           const diseases = result.data.res.diseases.map(
             (element) => element.disease
           );
-          console.log(diseases);
 
           this.setState({
             id: id,
@@ -70,7 +67,6 @@ class DocView extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.location.state);
     if (this.props.location.state) {
       const { id } = this.props.location.state;
       this.setState({ id: id }, () => {

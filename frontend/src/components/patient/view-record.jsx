@@ -23,7 +23,6 @@ class View extends Component {
 
   getRecord() {
     const id = this.state.id;
-    console.log(id);
     if (id !== -1) {
       axios
         .post("/patient/records", {
@@ -48,7 +47,6 @@ class View extends Component {
           const diseases = result.data.res.diseases.map(
             (element) => element.disease
           );
-          console.log(diseases);
 
           this.setState({
             id: id,
@@ -66,7 +64,6 @@ class View extends Component {
   }
 
   componentDidMount = () => {
-    console.log(this.props.location.state);
     if (this.props.location.state) {
       const { id } = this.props.location.state;
       this.setState({ id: id }, () => {
@@ -101,7 +98,6 @@ class View extends Component {
       display: "flex",
       justifyContent: "space-around",
       marginTop: "3%",
-      //   marginLeft: "8%",
     };
     const FlexStyle2 = {
       display: "flex",

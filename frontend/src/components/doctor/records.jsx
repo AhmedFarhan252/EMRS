@@ -31,7 +31,6 @@ class DocRecords extends Component {
 
   componentDidMount() {
     this.getRecords().then((res) => {
-      console.log(res);
       const { records, total } = res.data.response;
       this.setState({
         data: records.slice(),
