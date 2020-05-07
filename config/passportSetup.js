@@ -5,14 +5,10 @@ const db = require("../db/dbConnector");
 require("dotenv").config();
 
 passport.serializeUser((user, done) => {
-  console.log("IN SERIALIZE");
-  console.log(user);
   done(null, user);
 });
 
 passport.deserializeUser((user, done) => {
-  console.log("IN DESERIALIZE");
-  console.log(user);
   done(null, user);
 });
 

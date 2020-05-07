@@ -68,7 +68,6 @@ exports.editProfile = function (req, res) {
 exports.getRecords = function (req, res) {
   const id = req.user.tid;
   const { offset } = req.body;
-  console.log(id);
   let response = {};
   db.task((t) => {
     return t
@@ -212,8 +211,6 @@ exports.createRecord = function (req, res) {
   // pat_id = parseInt(pat_id);
   // disease = JSON.parse(disease);
 
-  console.log(req.body);
-
   return db
     .task((t) => {
       return t
@@ -254,7 +251,6 @@ exports.getDiseaseStats = function (req, res) {
     "select disease, count(disease) from record_to_disease where date > now() - '1 month'::interval group by disease order by count DESC limit 5;"
   )
     .then((data) => {
-      console.log(data);
       res.json({
         status: "ok",
         diseases: data,

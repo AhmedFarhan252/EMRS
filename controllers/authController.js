@@ -46,7 +46,7 @@ exports.googleRedirect = function (req, res) {
   } else if (role === "doctor") {
     res.redirect("http://localhost:3000/d/profile");
   } else if (role === "admin") {
-    res.redirect("http://localhost:3000/a");
+    res.redirect("http://localhost:3000/a/doc-accounts");
   } else {
     console.log("ERROR: UNKNOWN ROLE TYPE");
     res.redirect("http://localhost:3000");
@@ -68,7 +68,7 @@ exports.facebookRedirect = function (req, res) {
   } else if (role === "doctor") {
     res.redirect("http://localhost:3000/d/profile");
   } else if (role === "admin") {
-    res.redirect("http://localhost:3000/a");
+    res.redirect("http://localhost:3000/a/doc-accounts");
   } else {
     console.log("ERROR: UNKNOWN ROLE TYPE");
     res.redirect("http://localhost:3000");
@@ -127,6 +127,31 @@ exports.authDoctor = function (req, res) {
 
   //Check if the user is a doctor
   if (req.user.role !== "doctor") {
+    const ret = {
+      hasSession: false,
+    };
+    res.json(ret);
+  } else {
+    const ret = {
+      hasSession: true,
+    };
+    res.json(ret);
+  }
+};
+
+//Checks if person accessing admin route is authenticated as admin
+exports.authAdmin = function (req, res) {
+  //Check if session is present
+  if (!req.user) {
+    const ret = {
+      hasSession: false,
+    };
+    res.json(ret);
+    return;
+  }
+
+  //Check if the user is a admin
+  if (req.user.role !== "admin") {
     const ret = {
       hasSession: false,
     };
