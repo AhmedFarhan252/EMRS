@@ -10,10 +10,14 @@ const NavBar = () => (
     </div>
     <ul>
       <li>
-        <NavLink to="/a/doc-accounts">Accounts</NavLink>
+        <NavLink to="/a/doc-accounts" style={{ fontSize: "200%" }}> 
+          <i className="material-icons">people</i> Accounts
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/a/list-diseases">Diseases</NavLink>
+        <NavLink to="/a/list-diseases" style={{ fontSize: "200%" }}>
+          <i className="material-icons">list</i> Diseases
+        </NavLink>
       </li>
     </ul>
   </div>
