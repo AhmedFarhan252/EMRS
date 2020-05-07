@@ -42,4 +42,9 @@ router.get("/doctor", (req, res) => {
   authController.authDoctor(req, res);
 });
 
+//Authenticate admin session
+router.get("/admin", (req, res) => {
+  authController.authAdmin(req, res);
+});
+
 module.exports = router;

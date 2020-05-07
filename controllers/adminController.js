@@ -1,18 +1,28 @@
 const db = require("../db/dbConnector");
 
 exports.getAccount = function (req, res) {
-  db.any(
-    "select doctor.f_name,doctor.l_name,doctor.email from doctor,login where doctor.email = login.email and login.user_role = 'doctor';"
-  )
-    .then((data) => {
-      res.json({
-        status: "ok",
-        data: data,
+  const { offset } = req.body;
+  let response = {};
+
+  db.task((t) => {
+    return t
+      .one("select count(*) from login where login.user_role = 'doctor'; ")
+      .then((total) => {
+        return t
+          .any(
+            "select doctor.id, doctor.f_name as doc_fname,doctor.l_name as doc_lname,doctor.email from doctor,login where doctor.email = login.email and login.user_role = 'doctor' order by doctor.id limit 5 offset $1;",
+            [offset]
+          )
+          .then((records) => {
+            response["total"] = total;
+            response["records"] = records;
+            res.json({
+              status: "ok",
+              response: response,
+            });
+          });
       });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  });
 };
 
 exports.newAccount = function (req, res) {
@@ -56,16 +66,36 @@ exports.delAccount = function (req, res) {
 };
 
 exports.getDisease = function (req, res) {
-  db.any("SELECT unnest(enum_range(NULL::disease));")
-    .then((data) => {
-      res.json({
-        status: "ok",
-        data: data,
+  const { offset } = req.body;
+  let response = {};
+
+  db.task((t) => {
+    return t
+      .one(
+        "select count(*) from (select unnest(enum_range(NULL::disease))) as disList;"
+      )
+      .then((total) => {
+        return t
+          .any(
+            "SELECT unnest(enum_range(NULL::disease))::text as disease order by disease limit 5 offset $1",
+            [offset]
+          )
+          .then((records) => {
+            response["total"] = total;
+            response["records"] = records;
+            res.json({
+              status: "ok",
+              response: response,
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  });
 };
 
 exports.addDisease = function (req, res) {
@@ -78,5 +108,8 @@ exports.addDisease = function (req, res) {
     })
     .catch((err) => {
       console.log(err);
+      res.json({
+        status: "ok",
+      });
     });
 };
