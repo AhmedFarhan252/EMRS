@@ -49,7 +49,7 @@ class Add extends Component {
         //set date
         let present = new Date();
         const year = present.getFullYear();
-        let month = present.getMonth();
+        let month = present.getMonth() + 1;
         let date = present.getDate();
 
         if (month < 10) {
